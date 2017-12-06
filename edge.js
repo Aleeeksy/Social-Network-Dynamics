@@ -27,7 +27,6 @@ function Edge(node1, weight, node2){
     this.node2 = node2;
   }
 
-
   this.updateEdge = function(){
     var numberOfSame = (node1.getInterests()).filter(function(x){
         return node2.getInterests().includes(x);
