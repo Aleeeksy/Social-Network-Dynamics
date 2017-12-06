@@ -27,6 +27,15 @@ function Edge(node1, weight, node2){
     this.node2 = node2;
   }
 
+
+  this.updateEdge = function(){
+    var numberOfSame = (node1.getInterests()).filter(function(x){
+        return node2.getInterests().includes(x);
+    })
+    console.log(numberOfSame.length);
+    this.weight += -1 + (2 * (numberOfSame.length));
+  }
+
   this.toString = function(){
     return this.node1.toString() + " - " + this.weight + " - " + this.node2.toString();
   }

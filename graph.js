@@ -32,6 +32,17 @@ function Graph(nodes, edges){
     });
   }
 
+  this.update = function(){
+    this.edges = updateEdges();
+    //this.edges = createNewEdges();
+  }
+
+  this.updateEdges = function(){
+    this.edges.forEach(function (edge){
+      edge.updateEdge();
+    });
+  }
+
   this.printEdges = function(){
     edges.forEach(function(entry){
       console.log(entry.toString());
