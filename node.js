@@ -1,9 +1,10 @@
-function Node(id,name, interests, XCoordinate, YCoordinate){
+function Node(id,name, interests, XCoordinate, YCoordinate, color){
   this.id = id;
   this.name = name;
   this.interests = interests;
   this.XCoordinate = XCoordinate;
   this.YCoordinate = YCoordinate;
+  this.color = color;
 
   this.setXCoordinate = function(XCoordinate){
     this.XCoordinate = XCoordinate;
@@ -23,6 +24,10 @@ function Node(id,name, interests, XCoordinate, YCoordinate){
 
   this.setInterests = function(interests){
     this.interests = interests;
+  }
+
+  this.getColor = function(){
+    return this.color;
   }
 
   this.getXCoordinate = function(){

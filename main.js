@@ -26,7 +26,7 @@ function main(){
   mydata1.forEach(function (node){
     var random = Math.floor((Math.random() * 10) + 5);
     var fewInterests = getUnique(random, interests);
-    nodes.push(new Node(node.id, node.label, fewInterests, startX, startY));
+    nodes.push(new Node(node.id, node.label, fewInterests, startX, startY, '#'+(Math.random()*0xFFFFFF<<0).toString(16)));
     startX += addX;
     if(startX >= x){
       startX = 20;
@@ -37,13 +37,8 @@ function main(){
   mydata.forEach(function (edge){
     edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight,nodes[nodes.findIndex(i => i.id === edge.Target)]));
   });
-  nodes.forEach(function (node){
-    console.log(node.toString());
-  });
   var graph = new Graph(nodes, edges);
   //var nodess = new vis.DataSet(nodes);
-  var container = document.getElementById('mynetwork');
-  console.log(window.innerWidth + " " + window.innerHeight);
   graph.draw();
 }
 main();
