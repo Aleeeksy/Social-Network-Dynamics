@@ -1,7 +1,17 @@
-function Node(id,name, interests){
+function Node(id,name, interests, XCoordinate, YCoordinate){
   this.id = id;
   this.name = name;
   this.interests = interests;
+  this.XCoordinate = XCoordinate;
+  this.YCoordinate = YCoordinate;
+
+  this.setXCoordinate = function(XCoordinate){
+    this.XCoordinate = XCoordinate;
+  }
+
+  this.setYCoordinate = function(YCoordinate){
+    this.YCoordinate = YCoordinate;
+  }
 
   this.setId = function(id){
     this.id = id;
@@ -13,6 +23,14 @@ function Node(id,name, interests){
 
   this.setInterests = function(interests){
     this.interests = interests;
+  }
+
+  this.getXCoordinate = function(){
+    return this.XCoordinate;
+  }
+
+  this.getYCoordinate = function(){
+    return this.YCoordinate;
   }
 
   this.getId = function(){
@@ -28,7 +46,7 @@ function Node(id,name, interests){
   }
 
   this.toString = function(){
-    var str = this.id + ' ' + this.name + ' ' + interests.toString();
+    var str = this.id + ' ' + this.name + ' ' + this.interests.toString() + this.getXCoordinate();
     return str;
   }
 }

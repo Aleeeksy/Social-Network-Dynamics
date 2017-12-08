@@ -8,29 +8,43 @@ function main(){
   request1.open("GET", "../../database/nodes.json", false);
   request1.send(null)
   var mydata1  = JSON.parse(request1.responseText);
-  console.log(mydata[1]);
-  mydata.sort(function(a, b) {
+  /*mydata.sort(function(a, b) {
     return parseFloat(a.Source) - parseFloat(b.Source);
-  });
+  });*/
   mydata1.length
   var interests = ['Scuba diving','River rafting','Bungee jumping','Skiing','Trekking','Ice skating','Surfing','Racing','Gymnastics','Hunting','Cook foods in disguise','Painting','Graffiti art','Creative writing','Dancing/choreography','Singing/composing music','Sculpting','Model building','Interior decorating','Jewelry-making','Computer games','Video gaming','Social networking','Keeping virtual pets','Creating software','Internet browsing','Blogging','Building computers and robots','Fishing','Archery','Boating','Traveling','Camping','Kayaking','Kart racing','Golfing','Swimming','Skateboarding','Playing cards','Tarot card reading','Playing board games','Watching movies','Cubing','Bowling','Billiards','Ping pong/table tennis','Pottery','Birdwatching','Geocaching','Photography','Cloud watching','Stargazing','People watching','Herping (looking for reptiles)','Amateur meteorology','Reading','Yoga','Meditation','Exercising and body building','Participating in marathons','Jumping rope','Swimming','Martial arts','Fitness counseling','Recipe creation'];
 
   var nodes = [];
+  x = document.getElementById("mynetwork").offsetWidth; - 20;
+  y = document.getElementById("mynetwork").offsetHeight; - 15;
+  numberOfNodeY = 30;
+  numberOfNodeX = 53;
+  addX = x / numberOfNodeX;
+  addY = y / numberOfNodeY;
+  startX = 20;
+  startY = 15;
   mydata1.forEach(function (node){
     var random = Math.floor((Math.random() * 10) + 5);
     var fewInterests = getUnique(random, interests);
-    nodes.push(new Node(node.id, node.label,fewInterests));
+    nodes.push(new Node(node.id, node.label, fewInterests, startX, startY));
+    startX += addX;
+    if(startX >= x){
+      startX = 20;
+      startY += addY;
+    }
   });
   var edges = [];
   mydata.forEach(function (edge){
     edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight,nodes[nodes.findIndex(i => i.id === edge.Target)]));
   });
-  edges.forEach(function (edge){
-    console.log(edge.toString());
+  nodes.forEach(function (node){
+    console.log(node.toString());
   });
-  console.log(edges.length);
-  console.log(mydata.length);
   var graph = new Graph(nodes, edges);
+  //var nodess = new vis.DataSet(nodes);
+  var container = document.getElementById('mynetwork');
+  console.log(window.innerWidth + " " + window.innerHeight);
+  graph.draw();
 }
 main();
 

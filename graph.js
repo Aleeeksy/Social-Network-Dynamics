@@ -48,4 +48,26 @@ function Graph(nodes, edges){
       console.log(entry.toString());
     });
   }
+
+  this.draw = function(){
+    var c = document.getElementById("mynetwork");
+    var ctx= c.getContext("2d");
+    edges.forEach(function(edge){
+      ctx.beginPath();
+      ctx.moveTo(edge.getNode1().getXCoordinate(),edge.getNode1().getYCoordinate());
+      ctx.lineTo(edge.getNode2().getXCoordinate(),edge.getNode2().getYCoordinate());
+      //ctx.arc(node.getXCoordinate(),node.getYCoordinate(),4,0,2*Math.PI);
+      //ctx.fillStyle= 'red';
+      //ctx.fill();
+      ctx.stroke();
+    });
+    nodes.forEach(function(node){
+      ctx.beginPath();
+      ctx.arc(node.getXCoordinate(),node.getYCoordinate(),4,0,2*Math.PI);
+      ctx.fillStyle= 'red';
+      ctx.fill();
+    });
+
+  }
+
 }
