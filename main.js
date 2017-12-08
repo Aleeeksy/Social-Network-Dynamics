@@ -1,24 +1,13 @@
 
 function main(){
-  var node1 = new Node(12,"John", ["tenis", "golf", "koszykówka","piłka"]);
-  var node2 = new Node(11,"Piotr", ["motoryzacja", "góry", "piłka"]);
-  var edge1 = new Edge(node1, 45, node2);
-  var graph = new Graph([],[]);
   var request = new XMLHttpRequest();
-  request.open("GET", "../../database/baza.json", false);
+  request.open("GET", "../../database/edges.json", false);
   request.send(null)
   var mydata  = JSON.parse(request.responseText);
-
   var request1 = new XMLHttpRequest();
-  request1.open("GET", "../../database/node.json", false);
+  request1.open("GET", "../../database/nodes.json", false);
   request1.send(null)
   var mydata1  = JSON.parse(request1.responseText);
-  graph.addNode(node1);
-  graph.addNode(node2);
-  graph.addEdge(edge1);
-  graph.printEdges();
-  graph.updateEdges();
-  graph.printEdges();
   console.log(mydata[1]);
   mydata.sort(function(a, b) {
     return parseFloat(a.Source) - parseFloat(b.Source);
@@ -32,9 +21,16 @@ function main(){
     var fewInterests = getUnique(random, interests);
     nodes.push(new Node(node.id, node.label,fewInterests));
   });
-  mydata.forEach(function (node){
-    console.log(node.Source);
+  var edges = [];
+  mydata.forEach(function (edge){
+    edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight,nodes[nodes.findIndex(i => i.id === edge.Target)]));
   });
+  edges.forEach(function (edge){
+    console.log(edge.toString());
+  });
+  console.log(edges.length);
+  console.log(mydata.length);
+  var graph = new Graph(nodes, edges);
 }
 main();
 
