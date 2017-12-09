@@ -39,7 +39,12 @@ function main(){
   });
   var graph = new Graph(nodes, edges);
   //var nodess = new vis.DataSet(nodes);
-  graph.draw();
+  repeatOften();
+  function repeatOften(){
+    graph.draw();
+    graph.addNewEdge();
+    requestAnimationFrame(repeatOften);
+  }
 }
 main();
 

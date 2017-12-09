@@ -43,6 +43,45 @@ function Graph(nodes, edges){
     });
   }
 
+  this.addNewEdge = function(){
+    var tab = getUnique(5, nodes);
+    tab.forEach(function(element){
+      var t = [];
+      for(var i = 0; i < edges.length; i++){
+        if(edges[i].getNode1().getId() === element.getId()){
+          t.push(i);
+        }
+      }
+      //console.log(t);
+      if(t.length > 0){
+        var rand = t[Math.floor(Math.random() * t.length)];
+        //console.log(rand);
+        var node_id1 = edges[rand].getNode2().getId();
+        var n =[]
+        for(var i = 0; i < edges.length; i++){
+          if(edges[i].getNode1().getId() === node_id1){
+            n.push(i);
+          }
+        }
+        if(n.length > 0){
+          var rand = n[Math.floor(Math.random() * n.length)];
+          var node_id2 = edges[rand].getNode2().getId();
+          var ma_juz_polonczenie = 0;
+          t.forEach(function(el){
+            if(edges[el].getNode2().getId() === node_id2){
+              ma_juz_polonczenie++;
+            }
+          });
+          if(ma_juz_polonczenie === 0){
+            edges.push(new Edge(element,0.2,nodes[node_id2]));
+          }
+        }
+      }
+
+      //console.log(t.toString());
+    });
+  }
+
   this.printEdges = function(){
     edges.forEach(function(entry){
       console.log(entry.toString());
@@ -70,5 +109,18 @@ function Graph(nodes, edges){
     });
 
   }
+}
 
+function getUnique(count, array) {
+  // Make a copy of the array
+  var tmp = array.slice(array);
+  var ret = [];
+
+  for (var i = 0; i < count; i++) {
+    var index = Math.floor(Math.random() * tmp.length);
+    var removed = tmp.splice(index, 1);
+    // Since we are only removing one element
+    ret.push(removed[0]);
+  }
+  return ret;
 }
