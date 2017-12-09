@@ -42,6 +42,7 @@ function main(){
   repeatOften();
   function repeatOften(){
     graph.draw();
+    graph.updateEdges();
     graph.addNewEdge();
     requestAnimationFrame(repeatOften);
   }

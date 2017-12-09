@@ -31,7 +31,7 @@ function Edge(node1, weight, node2){
     var numberOfSame = (node1.getInterests()).filter(function(x){
         return node2.getInterests().includes(x);
     })
-    this.weight += -1 + (2 * (numberOfSame.length));
+    this.weight += -0.5  + (0.41 * (numberOfSame.length));
   }
 
   this.toString = function(){

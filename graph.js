@@ -40,7 +40,15 @@ function Graph(nodes, edges){
   this.updateEdges = function(){
     this.edges.forEach(function (edge){
       edge.updateEdge();
+      if(edge.getWeigth() <= 0){
+        var index = edges.indexOf(edge);
+        //console.log(index);
+        if (index > -1) {
+          this.edges = edges.splice(index, 1);
+        }
+      }
     });
+    console.log(edges.length);
   }
 
   this.addNewEdge = function(){
@@ -89,8 +97,9 @@ function Graph(nodes, edges){
   }
 
   this.draw = function(){
-    var c = document.getElementById("mynetwork");
-    var ctx= c.getContext("2d");
+    var canvas = document.getElementById("mynetwork");
+    var ctx= canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     edges.forEach(function(edge){
       ctx.beginPath();
       ctx.moveTo(edge.getNode1().getXCoordinate(),edge.getNode1().getYCoordinate());
