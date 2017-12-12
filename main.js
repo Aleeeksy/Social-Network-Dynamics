@@ -39,6 +39,29 @@ function main(){
   });
   var graph = new Graph(nodes, edges);
   //var nodess = new vis.DataSet(nodes);
+  /*var nodes_tab = [];
+  var edges_tab = [];
+  nodes.forEach(function(node){
+    nodes_tab.push({id: node.getId(), label: node.getName()});
+  });
+  edges.forEach(function(edge){
+    edges_tab.push({from: edge.getNode1().getId(), to: edge.getNode2().getId()});
+  });
+  var nodes_data = new vis.DataSet(nodes_tab);
+  var edges_data = new vis.DataSet(edges_tab);
+  var data = {
+    nodes: nodes_data,
+    edges: edges_data,
+  }
+  var options = {
+  layout: {
+    improvedLayout:false,
+  }
+
+  };
+  var container = document.getElementById('mynetwork');
+  var network = new vis.Network(container, data, options);*/
+
   repeatOften();
   function repeatOften(){
     graph.draw();

@@ -52,7 +52,7 @@ function Graph(nodes, edges){
   }
 
   this.addNewEdge = function(){
-    var tab = getUnique(5, nodes);
+    var tab = getUnique(2, nodes);
     tab.forEach(function(element){
       var t = [];
       for(var i = 0; i < edges.length; i++){
@@ -83,6 +83,14 @@ function Graph(nodes, edges){
           if(ma_juz_polonczenie === 0){
             edges.push(new Edge(element,0.2,nodes[node_id2]));
           }
+        }
+      }
+      else if(t.length === 0){
+        var firstFriendNode = getUnique(1,nodes);
+        if(firstFriendNode[0] !== element){
+          //console.log('jest ok');
+          //console.log(firstFriendNode[0]);
+          edges.push(new Edge(element, 0.1, firstFriendNode[0]));
         }
       }
 
