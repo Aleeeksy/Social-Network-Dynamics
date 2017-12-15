@@ -57,11 +57,11 @@ function Graph(nodes, edges){
         }
       })
       var numberOfFriendshipsToImprove = (list.length * 0.2 >= 1) ? Math.round(list.length*0.2):1;
-      /*var friendshipsToImprove = getUnique(numberOfFriendshipsToImprove, list);
+      var friendshipsToImprove = getUnique(numberOfFriendshipsToImprove, list);
       var friendshipsToDestroy = list.filter(x => !friendshipsToImprove.has(x));
       console.log("łacznie: ",numberOfFriendshipsToImprove);
       console.log("do poprawy: ",friendshipsToImprove.length);
-      console.log("do pogorszenia: ",friendshipsToDestroy.length);*/
+      console.log("do pogorszenia: ",friendshipsToDestroy.length);
       friendshipsToImprove.map(element => element.update1Edge());
     })
   }
