@@ -32,13 +32,13 @@ function Graph(nodes, edges){
     });
   }
 
-  this.update = function(){
+  /*this.update = function(){
     this.edges = updateEdges();
     //this.edges = createNewEdges();
-  }
+  }*/
 
   this.updateEdges = function(){
-    this.edges.forEach(function (edge){
+    /*this.edges.forEach(function (edge){
       edge.updateEdge();
       if(edge.getWeigth() <= 0){
         var index = edges.indexOf(edge);
@@ -48,7 +48,22 @@ function Graph(nodes, edges){
         }
       }
     });
-    console.log(edges.length);
+    console.log(edges.length);*/
+    this.nodes.forEach(function(node){
+      var list = [];
+      edges.forEach(function(edge){
+        if(node.getId() === edge.getNode2().getId()){
+          list.push(edge);
+        }
+      })
+      var numberOfFriendshipsToImprove = (list.length * 0.2 >= 1) ? Math.round(list.length*0.2):1;
+      /*var friendshipsToImprove = getUnique(numberOfFriendshipsToImprove, list);
+      var friendshipsToDestroy = list.filter(x => !friendshipsToImprove.has(x));
+      console.log("łacznie: ",numberOfFriendshipsToImprove);
+      console.log("do poprawy: ",friendshipsToImprove.length);
+      console.log("do pogorszenia: ",friendshipsToDestroy.length);*/
+      friendshipsToImprove.map(element => element.update1Edge());
+    })
   }
 
   //na edgach

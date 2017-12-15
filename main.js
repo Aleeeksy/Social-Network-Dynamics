@@ -1,11 +1,11 @@
 
 function main(){
   var request = new XMLHttpRequest();
-  request.open("GET", "../../database/edges.json", false);
+  request.open("GET", "/database/edges.json", false);
   request.send(null)
   var mydata  = JSON.parse(request.responseText);
   var request1 = new XMLHttpRequest();
-  request1.open("GET", "../../database/nodes.json", false);
+  request1.open("GET", "/database/nodes.json", false);
   request1.send(null)
   var mydata1  = JSON.parse(request1.responseText);
   /*mydata.sort(function(a, b) {
