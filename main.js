@@ -40,6 +40,7 @@ function main(){
 
   edges.forEach(function(edge){
     nodes[nodes.findIndex(i => i.id === edge.getNode1().getId())].addFriend(new Friend(nodes[nodes.findIndex(i => i.id === edge.getNode2().getId())], edge.getWeigth()));
+    //nodes[nodes.findIndex(i => i.id === edge.getNode2().getId())].addFriend(new Friend(nodes[nodes.findIndex(i => i.id === edge.getNode1().getId())], edge.getWeigth()));
   });
 
   nodes.forEach(function(node){

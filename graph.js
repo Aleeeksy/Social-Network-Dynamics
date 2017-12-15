@@ -98,6 +98,10 @@ function Graph(nodes, edges){
       //console.log(t.toString());
     });
   }
+  //friend
+  /*this.addNewFriend = function(){
+
+  }*/
 
 //rysowanie jeśli edge
   this.draw = function(){
