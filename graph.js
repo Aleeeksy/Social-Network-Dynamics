@@ -52,17 +52,17 @@ function Graph(nodes, edges){
     this.nodes.forEach(function(node){
       var list = [];
       edges.forEach(function(edge){
-        if(node.getId() === edge.getNode2().getId()){
+        if(node.getId() === edge.getNode1().getId()){
           list.push(edge);
         }
       })
       var numberOfFriendshipsToImprove = (list.length * 0.2 >= 1) ? Math.round(list.length*0.2):1;
       var friendshipsToImprove = getUnique(numberOfFriendshipsToImprove, list);
-      var friendshipsToDestroy = list.filter(x => !friendshipsToImprove.has(x));
-      console.log("łacznie: ",numberOfFriendshipsToImprove);
+      var friendshipsToDestroy = list.filter(x => friendshipsToImprove.indexOf(x) === -1);
+      console.log("łacznie: ", list.length);
       console.log("do poprawy: ",friendshipsToImprove.length);
       console.log("do pogorszenia: ",friendshipsToDestroy.length);
-      friendshipsToImprove.map(element => element.update1Edge());
+      //friendshipsToImprove.map(element => element.update1Edge());
     })
   }
 
