@@ -26,7 +26,7 @@ function main(){
   mydata1.forEach(function (node){
     var random = Math.floor((Math.random() * 10) + 5);
     var fewInterests = getUnique(random, interests);
-    nodes.push(new Node(node.id, node.label, fewInterests, startX, startY, '#'+(Math.random()*0xFFFFFF<<0).toString(16), []));
+    nodes.push(new Node(node.id, node.label, fewInterests, startX, startY));
     startX += addX;
     if(startX >= x){
       startX = 20;
@@ -35,17 +35,14 @@ function main(){
   });
   var edges = [];
   mydata.forEach(function (edge){
-    edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight,nodes[nodes.findIndex(i => i.id === edge.Target)]));
+    edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight,nodes[nodes.findIndex(i => i.id === edge.Target)], false));
   });
 
-  edges.forEach(function(edge){
+  /*edges.forEach(function(edge){
     nodes[nodes.findIndex(i => i.id === edge.getNode1().getId())].addFriend(new Friend(nodes[nodes.findIndex(i => i.id === edge.getNode2().getId())], edge.getWeigth()));
     //nodes[nodes.findIndex(i => i.id === edge.getNode2().getId())].addFriend(new Friend(nodes[nodes.findIndex(i => i.id === edge.getNode1().getId())], edge.getWeigth()));
-  });
+  });*/
 
-  nodes.forEach(function(node){
-    console.log(node.toString());
-  });
   var graph = new Graph(nodes, edges);
   //var nodess = new vis.DataSet(nodes);
   /*var nodes_tab = [];
@@ -71,11 +68,13 @@ function main(){
   var container = document.getElementById('mynetwork');
   var network = new vis.Network(container, data, options);*/
 
+  var ir = 0;
   repeatOften();
   function repeatOften(){
     graph.draw();
     graph.updateEdges();
-    graph.addNewEdge();
+    if(ir % 7 == 0) graph.addNewEdge();
+    ir++;
     requestAnimationFrame(repeatOften);
   }
 }
