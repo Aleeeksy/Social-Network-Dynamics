@@ -1,15 +1,15 @@
-function Node(id,name, interests, XCoordinate, YCoordinate, color, friends){
+function Node(id,name, interests, XCoordinate, YCoordinate){
   this.id = id;
   this.name = name;
   this.interests = interests;
   this.XCoordinate = XCoordinate;
   this.YCoordinate = YCoordinate;
-  this.color = color;
-  this.friends = friends;
+  //this.color = color;
+  //this.friends = friends;
 
-  this.addFriend = function(friend){
+/*  this.addFriend = function(friend){
     this.friends.push(friend);
-  }
+  }*/
 
   this.setXCoordinate = function(XCoordinate){
     this.XCoordinate = XCoordinate;
@@ -31,13 +31,13 @@ function Node(id,name, interests, XCoordinate, YCoordinate, color, friends){
     this.interests = interests;
   }
 
-  this.setFriends = function(friends){
+/*  this.setFriends = function(friends){
     this.friends = friends;
-  }
+  }*/
 
-  this.getColor = function(){
+  /*this.getColor = function(){
     return this.color;
-  }
+  }*/
 
   this.getXCoordinate = function(){
     return this.XCoordinate;
@@ -59,16 +59,12 @@ function Node(id,name, interests, XCoordinate, YCoordinate, color, friends){
     return this.interests;
   }
 
-  this.getFriends = function(){
+/*  this.getFriends = function(){
     return this.friends;
-  }
+  }*/
 
   this.toString = function(){
     var str = this.id + ' ' + this.name + ' (';
-    this.friends.forEach(function(friend){
-      str += friend.getNode().getId()+', ';
-    });
-    str += ')';
     return str;
   }
 }
