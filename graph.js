@@ -1,6 +1,9 @@
-function Graph(nodes, edges){
-  this.nodes = nodes;
-  this.edges = edges;
+function Graph(nodes, edges, maxNumberOfNewFriendships, precentageOfFriends){
+  this.nodes = nodes
+  this.edges = edges
+  this.maxNumberOfNewFriendships = maxNumberOfNewFriendships //120
+  this.precentageOfFriends = precentageOfFriends  //0.2
+
 
   this.getNodes = function(){
     return this.nodes;
@@ -38,7 +41,7 @@ function Graph(nodes, edges){
   }*/
 
   this.updateEdges = function(){
-    console.log(edges.length);
+    $("#numberOfEdges").text("Number of edges: " + edges.length)
     this.edges.map((element) => {element.setUpdated(false)})
     /*this.edges.forEach(function (edge){
       edge.updateEdge();
@@ -67,9 +70,9 @@ function Graph(nodes, edges){
         numberOfFriendshipsToImprove = 1
       }
       else {
-        numberOfFriendshipsToImprove = Math.round(list.length*0.2)
+        numberOfFriendshipsToImprove = Math.round(list.length * this.precentageOfFriends)
       }
-      if(numberOfFriendshipsToImprove >= 8)numberOfFriendshipsToImprove = 7;
+      //if(numberOfFriendshipsToImprove >= 8)numberOfFriendshipsToImprove = 7;
       var los = Math.floor(Math.random() * 3)
       if((los === 0 || los == 2) && list.length === 1){
         list[0].update1Edge();
@@ -105,7 +108,7 @@ function Graph(nodes, edges){
 
   //na edgach
   this.addNewEdge = function(){
-    var tab = getUnique(120, nodes);
+    var tab = getUnique(this.maxNumberOfNewFriendships, nodes);
     tab.forEach(function(node1){
 
     var friendsOfNode1 = [];
@@ -204,8 +207,10 @@ function Graph(nodes, edges){
 
 //rysowanie jeśli edge
   this.draw = function(){
+
     var canvas = document.getElementById("mynetwork");
     var ctx= canvas.getContext("2d");
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     edges.forEach(function(edge){
       ctx.beginPath();
@@ -217,14 +222,14 @@ function Graph(nodes, edges){
       //ctx.fillStyle= 'red';
       //ctx.fill();
       ctx.stroke();
-    });
+    }),
+
     nodes.forEach(function(node){
       ctx.beginPath();
       ctx.arc(node.getXCoordinate(),node.getYCoordinate(),2,0,2*Math.PI);
       ctx.fillStyle = 'black';
       ctx.fill();
-    });
-
+    })
   }
 
   //rysowanie jeśli node i przyjaciele

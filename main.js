@@ -1,4 +1,9 @@
 
+var edgesS = []
+var nodesS = []
+var playAnimation = true
+
+
 function main(){
   var request = new XMLHttpRequest();
   request.open("GET", "/database/edges.json", false);
@@ -15,8 +20,8 @@ function main(){
   var interests = ['Scuba diving','River rafting','Bungee jumping','Skiing','Trekking','Ice skating','Surfing','Racing','Gymnastics','Hunting','Cook foods in disguise','Painting','Graffiti art','Creative writing','Dancing/choreography','Singing/composing music','Sculpting','Model building','Interior decorating','Jewelry-making','Computer games','Video gaming','Social networking','Keeping virtual pets','Creating software','Internet browsing','Blogging','Building computers and robots','Fishing','Archery','Boating','Traveling','Camping','Kayaking','Kart racing','Golfing','Swimming','Skateboarding','Playing cards','Tarot card reading','Playing board games','Watching movies','Cubing','Bowling','Billiards','Ping pong/table tennis','Pottery','Birdwatching','Geocaching','Photography','Cloud watching','Stargazing','People watching','Herping (looking for reptiles)','Amateur meteorology','Reading','Yoga','Meditation','Exercising and body building','Participating in marathons','Jumping rope','Swimming','Martial arts','Fitness counseling','Recipe creation'];
 
   var nodes = [];
-  x = document.getElementById("mynetwork").offsetWidth; - 20;
-  y = document.getElementById("mynetwork").offsetHeight; - 15;
+  x = 1280 - 20;
+  y = 720 - 15;
   numberOfNodeY = 30;
   numberOfNodeX = 53;
   addX = x / numberOfNodeX;
@@ -42,8 +47,8 @@ function main(){
     nodes[nodes.findIndex(i => i.id === edge.getNode1().getId())].addFriend(new Friend(nodes[nodes.findIndex(i => i.id === edge.getNode2().getId())], edge.getWeigth()));
     //nodes[nodes.findIndex(i => i.id === edge.getNode2().getId())].addFriend(new Friend(nodes[nodes.findIndex(i => i.id === edge.getNode1().getId())], edge.getWeigth()));
   });*/
-
-  var graph = new Graph(nodes, edges);
+  nodesS = nodes;
+  edgesS = edges;
   //var nodess = new vis.DataSet(nodes);
   /*var nodes_tab = [];
   var edges_tab = [];
@@ -68,17 +73,75 @@ function main(){
   var container = document.getElementById('mynetwork');
   var network = new vis.Network(container, data, options);*/
 
-  var ir = 0;
-  repeatOften();
-  function repeatOften(){
-    graph.draw();
-    graph.updateEdges();
-    if(ir % 7 == 0) graph.addNewEdge();
-    ir++;
-    requestAnimationFrame(repeatOften);
-  }
 }
 main();
+
+function start(){
+  playAnimation = true;
+  maxNumberOfNewFriendships = $('input[name="maxNumberOfNewFriendships"]').val()
+  precentageOfFriends = $('input[name="precentageOfFriends"]').val()
+  var graph = new Graph(nodesS, edgesS,maxNumberOfNewFriendships,precentageOfFriends);
+  var ir = 0;
+
+  var ctx2 = $("#myChart");
+  var myChart = new Chart(ctx2, {
+  type: 'bar',
+  data: {
+      labels: ["b Słaba", "słaba", "średnia", "silna", "b silna"],
+      datasets: [{
+          //label: '# of Votes',
+          data: [0, 0, 0, 0, 0],
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)'
+          ],
+          borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)'
+          ],
+          borderWidth: 1
+      }]
+  },
+  options: {
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero:true
+              }
+          }]
+      }
+  }
+  });
+
+  repeatOften();
+  function repeatOften(){
+    if(playAnimation){
+      graph.draw();
+      myChart.data.datasets[0].data[0] = graph.getEdges().filter(x => x.getWeigth() < 0.2).length
+      myChart.data.datasets[0].data[1] = graph.getEdges().filter(x => x.getWeigth() < 0.4 && x.getWeigth() >= 0.2).length
+      myChart.data.datasets[0].data[2] = graph.getEdges().filter(x => x.getWeigth() < 0.6 && x.getWeigth() >= 0.4).length
+      myChart.data.datasets[0].data[3] = graph.getEdges().filter(x => x.getWeigth() < 0.8 && x.getWeigth() >= 0.6).length
+      myChart.data.datasets[0].data[4] = graph.getEdges().filter(x => x.getWeigth() >= 0.8).length
+      console.log()
+      myChart.update()
+      graph.updateEdges();
+      if(ir % 7 == 0) graph.addNewEdge();
+      ir++;
+      requestAnimationFrame(repeatOften);
+    }
+  }
+}
+
+
+function stop(){
+  playAnimation = false;
+}
 
 function getUnique(count, array) {
   // Make a copy of the array
