@@ -1,0 +1,112 @@
+<html>
+<head>
+    <title>Tutorial 1: Getting Started</title>
+    <link type="text/css" rel="stylesheet" href="assets/jquery.qtip.min.css" />
+    <script src='assets/jquery-3.2.1.min.js'></script>
+    <script src='assets/jquery.qtip.min.js'></script>
+    <script src='assets/cytoscape.js'></script>
+    <script src='assets/cytoscape-qtip.js'></script>
+    <script src="node.js"></script>
+    <script src="graph.js"></script>
+    <script src="edge.js"></script>
+    <script src="friend.js"></script>
+</head>
+<style>
+    #cy {
+        width: 90%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+</style>
+<body bgcolor="black">
+    <div id="cy"></div>
+    <script src="main.js"></script>
+    <script>
+      main = new Main()
+      main.start();
+      console.log(main.getData())
+
+      elem = main.getData().map((x) => ({data: x }))
+
+      var cy = cytoscape({
+        container: document.getElementById('cy'),
+        elements: elem,
+
+        style: [
+        {
+          selector: 'node',
+          style: {
+            width: 11,
+            height: 11,
+            shape: 'circle',
+            'background-color': '#3377ff',
+            'background-opacity': 0.5
+            //label : 'data(id)'
+          }
+        },
+        {
+          selector: 'edge',
+          style: {
+            width: 0.5,
+            'curve-style': 'unbundled-bezier',
+            'line-color': function(ele){ if (ele.data('weight') <= 0.2) {return '#9966ff'} 
+                                         else if (ele.data('weight') <= 0.4) {return 'green'}
+                                         else if (ele.data('weight') <= 0.6) {return 'orange'}
+                                         else if (ele.data('weight') <= 0.8) {return '#e600e6'}
+                                         else if (ele.data('weight') <= 1) {return 'red'}
+                                         else {return '#990000'}}
+          }
+        }]
+
+      });
+
+      cy.layout({
+        name: 'concentric'
+      }).run();
+
+      cy.on('tap', function(event){
+        var evtTarget = event.target;
+        if( evtTarget === cy ){
+              //document.write('<iframe width="100%" height="100%" frameborder="0" src="try.html"></iframe>');
+              location.reload();
+        } else {
+          var node = event.target;
+
+          connectedEdges = node.connectedEdges();
+          var goodEdges = connectedEdges;
+          goodEdges.style({width: 2, 'line-color': function(ele){ if (ele.data('weight') <= 0.2) {return '#9966ff'} 
+                                           else if (ele.data('weight') <= 0.4) {return 'green'}
+                                           else if (ele.data('weight') <= 0.6) {return 'orange'}
+                                           else if (ele.data('weight') <= 0.8) {return '#e600e6'}
+                                           else if (ele.data('weight') <= 1) {return 'red'}
+                                           else {return '#990000'}}});
+          var edges = cy.edges();
+          var badEdges = edges.difference(goodEdges);
+
+         badEdges.style({'line-color' : 'gray', width: 0.5});
+
+          var nodes = cy.nodes();
+          var goodNodes = connectedEdges.connectedNodes();
+          var badNodes = nodes.difference(goodNodes);
+
+          badNodes.style({'background-opacity': 0.1});
+          goodNodes.style({'background-opacity':1});
+        }
+      });
+
+      cy.nodes().forEach(function(ele) {
+        ele.qtip({
+          content: {
+            text: ele.data('label')
+          },
+          style: {
+            classes: 'qtip-blue'
+          }
+        })
+      });
+
+    </script>
+</body>
+</html>

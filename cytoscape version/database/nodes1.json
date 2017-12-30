@@ -1,0 +1,756 @@
+[
+  {
+    "id": "0",
+    "label": "ABRAMSON, G"
+  },
+  
+  {
+    "id": "1",
+    "label": "KUPERMAN, M"
+  },
+  
+  {
+    "id": "2",
+    "label": "ACEBRON, J"
+  },
+  
+  {
+    "id": "3",
+    "label": "BONILLA, L"
+  },
+  
+  {
+    "id": "4",
+    "label": "PEREZVICENTE, C"
+  },
+  
+  {
+    "id": "5",
+    "label": "RITORT, F"
+  },
+  
+  {
+    "id": "6",
+    "label": "SPIGLER, R"
+  },
+  
+  {
+    "id": "7",
+    "label": "ADAMIC, L"
+  },
+  
+  {
+    "id": "8",
+    "label": "ADAR, E"
+  },
+  
+  {
+    "id": "9",
+    "label": "HUBERMAN, B"
+  },
+  
+  {
+    "id": "10",
+    "label": "LUKOSE, R"
+  },
+  
+  {
+    "id": "11",
+    "label": "PUNIYANI, A"
+  },
+  
+  {
+    "id": "12",
+    "label": "AERTSEN, A"
+  },
+  
+  {
+    "id": "13",
+    "label": "GERSTEIN, G"
+  },
+  
+  {
+    "id": "14",
+    "label": "HABIB, M"
+  },
+  
+  {
+    "id": "15",
+    "label": "PALM, G"
+  },
+  
+  {
+    "id": "16",
+    "label": "AFRAIMOVICH, V"
+  },
+  
+  {
+    "id": "17",
+    "label": "VERICHEV, N"
+  },
+  
+  {
+    "id": "18",
+    "label": "RABINOVICH, M"
+  },
+  
+  {
+    "id": "19",
+    "label": "AGRAWAL, H"
+  },
+  
+  {
+    "id": "20",
+    "label": "AHUJA, R"
+  },
+  
+  {
+    "id": "21",
+    "label": "MAGNANTI, T"
+  },
+  
+  {
+    "id": "22",
+    "label": "ORLIN, J"
+  },
+  
+  {
+    "id": "23",
+    "label": "AIELLO, W"
+  },
+  
+  {
+    "id": "24",
+    "label": "CHUNG, F"
+  },
+  
+  {
+    "id": "25",
+    "label": "LU, L"
+  },
+  
+  {
+    "id": "26",
+    "label": "ALBA, R"
+  },
+  
+  {
+    "id": "27",
+    "label": "ALBERICH, R"
+  },
+  
+  {
+    "id": "28",
+    "label": "MIROJULIA, J"
+  },
+  
+  {
+    "id": "29",
+    "label": "ROSSELLO, F"
+  },
+  
+  {
+    "id": "30",
+    "label": "ALBERT, R"
+  },
+  
+  {
+    "id": "31",
+    "label": "ALBERT, I"
+  },
+  
+  {
+    "id": "32",
+    "label": "NAKARADO, G"
+  },
+  
+  {
+    "id": "33",
+    "label": "BARABASI, A"
+  },
+  
+  {
+    "id": "34",
+    "label": "JEONG, H"
+  },
+  
+  {
+    "id": "35",
+    "label": "ALBERTS, B"
+  },
+  
+  {
+    "id": "36",
+    "label": "BRAY, D"
+  },
+  
+  {
+    "id": "37",
+    "label": "LEWIS, J"
+  },
+  
+  {
+    "id": "38",
+    "label": "RAFF, M"
+  },
+  
+  {
+    "id": "39",
+    "label": "ROBERTS, K"
+  },
+  
+  {
+    "id": "40",
+    "label": "WATSON, J"
+  },
+  
+  {
+    "id": "41",
+    "label": "ALDANA, M"
+  },
+  
+  {
+    "id": "42",
+    "label": "ALDOUS, D"
+  },
+  
+  {
+    "id": "43",
+    "label": "PITTEL, B"
+  },
+  
+  {
+    "id": "44",
+    "label": "ALEKSIEJUK, A"
+  },
+  
+  {
+    "id": "45",
+    "label": "HOLYST, J"
+  },
+  
+  {
+    "id": "46",
+    "label": "STAUFFER, D"
+  },
+  
+  {
+    "id": "47",
+    "label": "ALLARIA, E"
+  },
+  
+  {
+    "id": "48",
+    "label": "ARECCHI, F"
+  },
+  
+  {
+    "id": "49",
+    "label": "DIGARBO, A"
+  },
+  
+  {
+    "id": "50",
+    "label": "MEUCCI, R"
+  },
+  
+  {
+    "id": "51",
+    "label": "ALMAAS, E"
+  },
+  
+  {
+    "id": "52",
+    "label": "KOVACS, B"
+  },
+  
+  {
+    "id": "53",
+    "label": "VICSEK, T"
+  },
+  
+  {
+    "id": "54",
+    "label": "OLTVAI, Z"
+  },
+  
+  {
+    "id": "55",
+    "label": "KRAPIVSKY, P"
+  },
+  
+  {
+    "id": "56",
+    "label": "REDNER, S"
+  },
+  
+  {
+    "id": "57",
+    "label": "KULKARNI, R"
+  },
+  
+  {
+    "id": "58",
+    "label": "STROUD, D"
+  },
+  
+  {
+    "id": "59",
+    "label": "ALON, N"
+  },
+  
+  {
+    "id": "60",
+    "label": "YUSTER, R"
+  },
+  
+  {
+    "id": "61",
+    "label": "ZWICK, U"
+  },
+  
+  {
+    "id": "62",
+    "label": "ALON, U"
+  },
+  
+  {
+    "id": "63",
+    "label": "SURETTE, M"
+  },
+  
+  {
+    "id": "64",
+    "label": "BARKAI, N"
+  },
+  
+  {
+    "id": "65",
+    "label": "LEIBER, S"
+  },
+  
+  {
+    "id": "66",
+    "label": "ALTER, O"
+  },
+  
+  {
+    "id": "67",
+    "label": "BROWN, P"
+  },
+  
+  {
+    "id": "68",
+    "label": "BOTSTEIN, D"
+  },
+  
+  {
+    "id": "69",
+    "label": "AMARAL, L"
+  },
+  
+  {
+    "id": "70",
+    "label": "SCALA, A"
+  },
+  
+  {
+    "id": "71",
+    "label": "BARTHELEMY, M"
+  },
+  
+  {
+    "id": "72",
+    "label": "STANLEY, H"
+  },
+  
+  {
+    "id": "73",
+    "label": "AMENGUAL, A"
+  },
+  
+  {
+    "id": "74",
+    "label": "HERNANDEZGARCIA, E"
+  },
+  
+  {
+    "id": "75",
+    "label": "MONTAGNE, R"
+  },
+  
+  {
+    "id": "76",
+    "label": "SANMIGUEL, M"
+  },
+  
+  {
+    "id": "77",
+    "label": "ANCELMEYERS, L"
+  },
+  
+  {
+    "id": "78",
+    "label": "NEWMAN, M"
+  },
+  
+  {
+    "id": "79",
+    "label": "MARTIN, M"
+  },
+  
+  {
+    "id": "80",
+    "label": "SCHRAG, S"
+  },
+  
+  {
+    "id": "81",
+    "label": "ANDERSON, C"
+  },
+  
+  {
+    "id": "82",
+    "label": "WASSERMAN, S"
+  },
+  
+  {
+    "id": "83",
+    "label": "CROUCH, B"
+  },
+  
+  {
+    "id": "84",
+    "label": "ANDERSON, P"
+  },
+  
+  {
+    "id": "85",
+    "label": "ARROW, K"
+  },
+  
+  {
+    "id": "86",
+    "label": "PINES, D"
+  },
+  
+  {
+    "id": "87",
+    "label": "ANDERSON, R"
+  },
+  
+  {
+    "id": "88",
+    "label": "MAY, R"
+  },
+  
+  {
+    "id": "89",
+    "label": "ANDERSSON, H"
+  },
+  
+  {
+    "id": "90",
+    "label": "ANTAL, T"
+  },
+  
+  {
+    "id": "91",
+    "label": "APIC, G"
+  },
+  
+  {
+    "id": "92",
+    "label": "GOUGH, J"
+  },
+  
+  {
+    "id": "93",
+    "label": "TEICHMANN, S"
+  },
+  
+  {
+    "id": "94",
+    "label": "ARENAS, A"
+  },
+  
+  {
+    "id": "95",
+    "label": "CABRALES, A"
+  },
+  
+  {
+    "id": "96",
+    "label": "DIAZGUILERA, A"
+  },
+  
+  {
+    "id": "97",
+    "label": "GUIMERA, R"
+  },
+  
+  {
+    "id": "98",
+    "label": "VEGAREDONDO, F"
+  },
+  
+  {
+    "id": "99",
+    "label": "DANON, L"
+  },
+  
+  {
+    "id": "100",
+    "label": "GLEISER, P"
+  },
+  
+  {
+    "id": "101",
+    "label": "ARITA, M"
+  },
+  
+  {
+    "id": "102",
+    "label": "ASHWIN, P"
+  },
+  
+  {
+    "id": "103",
+    "label": "BUESCU, J"
+  },
+  
+  {
+    "id": "104",
+    "label": "STEWART, I"
+  },
+  
+  {
+    "id": "105",
+    "label": "ATAY, F"
+  },
+  
+  {
+    "id": "106",
+    "label": "JOST, J"
+  },
+  
+  {
+    "id": "107",
+    "label": "WENDE, A"
+  },
+  
+  {
+    "id": "108",
+    "label": "AUMANN, R"
+  },
+  
+  {
+    "id": "109",
+    "label": "HART, S"
+  },
+  
+  {
+    "id": "110",
+    "label": "AXELROD, R"
+  },
+  
+  {
+    "id": "111",
+    "label": "BADER, G"
+  },
+  
+  {
+    "id": "112",
+    "label": "HOGUE, C"
+  },
+  
+  {
+    "id": "113",
+    "label": "BAIESI, M"
+  },
+  
+  {
+    "id": "114",
+    "label": "PACZUSKI, M"
+  },
+  
+  {
+    "id": "115",
+    "label": "BAILEY, N"
+  },
+  
+  {
+    "id": "116",
+    "label": "BAIRD, D"
+  },
+  
+  {
+    "id": "117",
+    "label": "ULANOWICZ, R"
+  },
+  
+  {
+    "id": "118",
+    "label": "BAKER, W"
+  },
+  
+  {
+    "id": "119",
+    "label": "FAULKNER, R"
+  },
+  
+  {
+    "id": "120",
+    "label": "BAK, P"
+  },
+  
+  {
+    "id": "121",
+    "label": "SNEPPEN, K"
+  },
+  
+  {
+    "id": "122",
+    "label": "BALL, F"
+  },
+  
+  {
+    "id": "123",
+    "label": "MOLLISON, D"
+  },
+  
+  {
+    "id": "124",
+    "label": "SCALIATOMBA, G"
+  },
+  
+  {
+    "id": "125",
+    "label": "BALL, P"
+  },
+  
+  {
+    "id": "126",
+    "label": "BANAVAR, J"
+  },
+  
+  {
+    "id": "127",
+    "label": "MARITAN, A"
+  },
+  
+  {
+    "id": "128",
+    "label": "RINALDO, A"
+  },
+  
+  {
+    "id": "129",
+    "label": "BANKS, D"
+  },
+  
+  {
+    "id": "130",
+    "label": "CARLEY, K"
+  },
+  
+  {
+    "id": "131",
+    "label": "BIANCONI, G"
+  },
+  
+  {
+    "id": "132",
+    "label": "RAVASZ, E"
+  },
+  
+  {
+    "id": "133",
+    "label": "NEDA, Z"
+  },
+  
+  {
+    "id": "134",
+    "label": "SCHUBERT, A"
+  },
+  
+  {
+    "id": "135",
+    "label": "BARAHONA, M"
+  },
+  
+  {
+    "id": "136",
+    "label": "PECORA, L"
+  },
+  
+  {
+    "id": "137",
+    "label": "BARBOUR, A"
+  },
+  
+  {
+    "id": "138",
+    "label": "REINERT, G"
+  },
+  
+  {
+    "id": "139",
+    "label": "BARJOSEPH, Z"
+  },
+  
+  {
+    "id": "140",
+    "label": "GERBER, G"
+  },
+  
+  {
+    "id": "141",
+    "label": "LEE, T"
+  },
+  
+  {
+    "id": "142",
+    "label": "RINALDI, N"
+  },
+  
+  {
+    "id": "143",
+    "label": "YOO, J"
+  },
+  
+  {
+    "id": "144",
+    "label": "ROBERT, F"
+  },
+  
+  {
+    "id": "145",
+    "label": "GORDON, D"
+  },
+  
+  {
+    "id": "146",
+    "label": "FRAENKEL, E"
+  },
+  
+  {
+    "id": "147",
+    "label": "JAAKKOLA, T"
+  },
+  
+  {
+    "id": "148",
+    "label": "YOUNG, R"
+  },
+  
+  {
+    "id": "149",
+    "label": "BARRAT, A"
+  },
+  
+  {
+    "id": "150",
+    "label": "PASTORSATORRAS, R"
+  }
+]
