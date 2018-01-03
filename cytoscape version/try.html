@@ -13,8 +13,8 @@
 </head>
 <style>
     #cy {
-        width: 90%;
-        height: 100%;
+        width: 800px;
+        height: 800px;
         position: absolute;
         top: 0px;
         left: 0px;
@@ -51,7 +51,7 @@
           style: {
             width: 0.5,
             'curve-style': 'unbundled-bezier',
-            'line-color': function(ele){ if (ele.data('weight') <= 0.2) {return '#9966ff'} 
+            'line-color': function(ele){ if (ele.data('weight') <= 0.2) {return '#9966ff'}
                                          else if (ele.data('weight') <= 0.4) {return 'green'}
                                          else if (ele.data('weight') <= 0.6) {return 'orange'}
                                          else if (ele.data('weight') <= 0.8) {return '#e600e6'}
@@ -76,7 +76,7 @@
 
           connectedEdges = node.connectedEdges();
           var goodEdges = connectedEdges;
-          goodEdges.style({width: 2, 'line-color': function(ele){ if (ele.data('weight') <= 0.2) {return '#9966ff'} 
+          goodEdges.style({width: 2, 'line-color': function(ele){ if (ele.data('weight') <= 0.2) {return '#9966ff'}
                                            else if (ele.data('weight') <= 0.4) {return 'green'}
                                            else if (ele.data('weight') <= 0.6) {return 'orange'}
                                            else if (ele.data('weight') <= 0.8) {return '#e600e6'}
@@ -106,7 +106,7 @@
           }
         })
       });
-
+      main.animate()
     </script>
 </body>
 </html>

@@ -2,7 +2,8 @@
 var edgesS = []
 var nodesS = []
 var playAnimation = true
-
+var nodesToDraw = []
+var numberOfNodesToDraw = 300
 
 function main(){
   var request = new XMLHttpRequest();
@@ -31,47 +32,33 @@ function main(){
   mydata1.forEach(function (node){
     var random = Math.floor((Math.random() * 10) + 5);
     var fewInterests = getUnique(random, interests);
-    nodes.push(new Node(node.id, node.label, fewInterests, startX, startY));
+    nodes.push(new Node(node.id, node.label, fewInterests, 300, 300)); //zero na ostatnich
     startX += addX;
     if(startX >= x){
       startX = 20;
       startY += addY;
     }
   });
+
+  nodesToDraw = getUnique(numberOfNodesToDraw, nodes)
+  radius = 398
+  nodes.forEach(function(node){
+    for(var i = 0; i < numberOfNodesToDraw; i++){
+      angle = 2 * (Math.PI / numberOfNodesToDraw) * i
+      xCord = radius * Math.cos(angle)
+      yCord = radius * Math.sin(angle)
+      nodes[nodes.findIndex(z => z.getId() === nodesToDraw[i].getId())].setXCoordinate(xCord + 400)
+      nodes[nodes.findIndex(z => z.getId() === nodesToDraw[i].getId())].setYCoordinate(yCord + 400)
+    }
+  })
+
   var edges = [];
   mydata.forEach(function (edge){
-    edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight,nodes[nodes.findIndex(i => i.id === edge.Target)], false));
+    edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight, nodes[nodes.findIndex(i => i.id === edge.Target)], false));
   });
 
-  /*edges.forEach(function(edge){
-    nodes[nodes.findIndex(i => i.id === edge.getNode1().getId())].addFriend(new Friend(nodes[nodes.findIndex(i => i.id === edge.getNode2().getId())], edge.getWeigth()));
-    //nodes[nodes.findIndex(i => i.id === edge.getNode2().getId())].addFriend(new Friend(nodes[nodes.findIndex(i => i.id === edge.getNode1().getId())], edge.getWeigth()));
-  });*/
   nodesS = nodes;
   edgesS = edges;
-  //var nodess = new vis.DataSet(nodes);
-  /*var nodes_tab = [];
-  var edges_tab = [];
-  nodes.forEach(function(node){
-    nodes_tab.push({id: node.getId(), label: node.getName()});
-  });
-  edges.forEach(function(edge){
-    edges_tab.push({from: edge.getNode1().getId(), to: edge.getNode2().getId()});
-  });
-  var nodes_data = new vis.DataSet(nodes_tab);
-  var edges_data = new vis.DataSet(edges_tab);
-  var data = {
-    nodes: nodes_data,
-    edges: edges_data,
-  }
-  var options = {
-  layout: {
-    improvedLayout:false,
-  }
-
-  };
-  var container = document.getElementById('mynetwork');
-  var network = new vis.Network(container, data, options);*/
 
 }
 main();
@@ -80,7 +67,7 @@ function start(){
   playAnimation = true;
   maxNumberOfNewFriendships = $('input[name="maxNumberOfNewFriendships"]').val()
   precentageOfFriends = $('input[name="precentageOfFriends"]').val()
-  var graph = new Graph(nodesS, edgesS,maxNumberOfNewFriendships,precentageOfFriends);
+  var graph = new Graph(nodesS, edgesS, nodesToDraw, maxNumberOfNewFriendships, precentageOfFriends);
   var ir = 0;
 
   var ctx2 = $("#myChart");

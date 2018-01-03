@@ -86,10 +86,39 @@ function Graph(nodes, edges){
 
   //on egdes
   this.addNewEdge = function(){
-    var tab = getUnique(120, nodes);
+    var tab = getUnique(this.maxNumberOfNewFriendships, nodes);
     tab.forEach(function(node1){
 
     var friendsOfNode1 = [];
+          /*  edges.forEach(function(edge){
+              if(edge.getNode1().getId() === node1.getId()){
+                friendsOfNode1.push(edge);
+              }
+            })
+            console.log(friendsOfNode1.length);
+            if(friendsOfNode1.length > 0){
+              var connectorBetween = friendsOfNode1[Math.floor(Math.random() * friendsOfNode1.length)].getNode1()
+
+
+              var friendsOfConnectorBetween = [];
+              edges.forEach(function(edge){
+                if(edge.getNode1().getId() === connectorBetween.getId()){
+                  friendsOfConnectorBetween.push(edge);
+                }
+              })
+
+              var node2 = friendsOfConnectorBetween[Math.floor(Math.random() * friendsOfConnectorBetween.length)].getNode1()
+              var saJuz = 0;
+              friendsOfNode1.forEach(function(e){
+                if(e.getNode1().getId() === node2.getId()){
+                  saJuz++;
+                }
+              })
+              if(saJuz === 0){
+                edges.push(new Edge(node1, 0.1, node2));
+                console.log('xDDD')
+              }
+            }*/
 
       for(var i = 0; i < edges.length; i++){
         if(edges[i].getNode1().getId() === node1.getId()){
@@ -97,8 +126,10 @@ function Graph(nodes, edges){
         }
       }
 
+      //console.log(t.length);
       if(friendsOfNode1.length > 0){
         var rand = friendsOfNode1[Math.floor(Math.random() * friendsOfNode1.length)];
+        //console.log(rand);
         var node_id1 = edges[rand].getNode2().getId();
         var n =[]
         for(var i = 0; i < edges.length; i++){
@@ -134,12 +165,17 @@ function Graph(nodes, edges){
       else if(friendsOfNode1.length === 0){
         var los = Math.round(Math.random())
         if(los === 1){
+          //console.log('nowe');
           var firstFriendNode = getUnique(1,nodes);
           if(firstFriendNode[0] !== node1){
+            //console.log('jest ok');
+            //console.log(firstFriendNode[0]);
             edges.push(new Edge(node1, 0.2, firstFriendNode[0]));
           }
         }
       }
+
+      //console.log(t.toString());
     });
   }
 

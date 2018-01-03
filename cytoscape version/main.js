@@ -1,7 +1,7 @@
 var edgesS = []
 var nodesS = []
 
-//from here to 'var interests' code is the most IMPORTANT part 
+//from here to 'var interests' code is the most IMPORTANT part
 function Main(){
   var data;
 
@@ -40,7 +40,7 @@ function Main(){
       addY = y / numberOfNodeY;
       startX = 20;
       startY = 15;
-      
+
       mydata2.forEach(function (node){
         var random = Math.floor((Math.random() * 10) + 5);
         var fewInterests = getUnique(random, interests);
@@ -53,7 +53,7 @@ function Main(){
       });
 
       var edges = [];
-      
+
       mydata.forEach(function (edge){
         edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight,nodes[nodes.findIndex(i => i.id === edge.Target)], false));
       });
@@ -67,6 +67,23 @@ function Main(){
   	return this.data;
   }
 
+  this.animate = function(){
+    playAnimation = true;
+    maxNumberOfNewFriendships = $('input[name="maxNumberOfNewFriendships"]').val()
+    precentageOfFriends = $('input[name="precentageOfFriends"]').val()
+    var graph = new Graph(nodesS, edgesS,maxNumberOfNewFriendships,precentageOfFriends);
+    var ir = 0;
+    repeatOften();
+    function repeatOften(){
+      if(playAnimation){
+        console.log("i co2?")
+        graph.updateEdges();
+        if(ir % 7 == 0) graph.addNewEdge();
+        ir++;
+        requestAnimationFrame(repeatOften);
+      }
+    }
+  }
 }
 
 //this is also very important
@@ -86,21 +103,4 @@ function getUnique(count, array) {
     ret.push(removed[0]);
   }
   return ret;
-}
-
-function animate(){
-  playAnimation = true;
-  maxNumberOfNewFriendships = $('input[name="maxNumberOfNewFriendships"]').val()
-  precentageOfFriends = $('input[name="precentageOfFriends"]').val()
-  var graph = new Graph(nodesS, edgesS,maxNumberOfNewFriendships,precentageOfFriends);
-  var ir = 0;
-  repeatOften();
-  function repeatOften(){
-    if(playAnimation){
-      graph.draw();
-      if(ir % 7 == 0) graph.addNewEdge();
-      ir++;
-      requestAnimationFrame(repeatOften);
-    }
-  }
 }

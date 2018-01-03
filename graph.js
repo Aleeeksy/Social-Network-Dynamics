@@ -1,5 +1,6 @@
-function Graph(nodes, edges, maxNumberOfNewFriendships, precentageOfFriends){
+function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageOfFriends){
   this.nodes = nodes
+  this.nodesToDraw = nodesToDraw
   this.edges = edges
   this.maxNumberOfNewFriendships = maxNumberOfNewFriendships //120
   this.precentageOfFriends = precentageOfFriends  //0.2
@@ -213,58 +214,27 @@ function Graph(nodes, edges, maxNumberOfNewFriendships, precentageOfFriends){
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     edges.forEach(function(edge){
-      ctx.beginPath();
-      ctx.moveTo(edge.getNode1().getXCoordinate(),edge.getNode1().getYCoordinate());
-      ctx.lineTo(edge.getNode2().getXCoordinate(),edge.getNode2().getYCoordinate());
-      ctx.strokeStyle = getColor(edge.getWeigth());
+      if(nodesToDraw[nodesToDraw.findIndex(z => z.getId() === edge.getNode1().getId())] && nodesToDraw[nodesToDraw.findIndex(z => z.getId() === edge.getNode2().getId())]){
+        ctx.beginPath();
+        ctx.moveTo(edge.getNode1().getXCoordinate(),edge.getNode1().getYCoordinate());
+        ctx.lineTo(edge.getNode2().getXCoordinate(),edge.getNode2().getYCoordinate());
+        ctx.strokeStyle = getColor(edge.getWeigth());
 
-      //ctx.arc(node.getXCoordinate(),node.getYCoordinate(),4,0,2*Math.PI);
-      //ctx.fillStyle= 'red';
-      //ctx.fill();
-      ctx.stroke();
-    }),
+        //ctx.arc(node.getXCoordinate(),node.getYCoordinate(),4,0,2*Math.PI);
+        //ctx.fillStyle= 'red';
+        //ctx.fill();
+        ctx.stroke();
+      }
 
-    nodes.forEach(function(node){
+    })
+
+    nodesToDraw.forEach(function(node){
       ctx.beginPath();
       ctx.arc(node.getXCoordinate(),node.getYCoordinate(),2,0,2*Math.PI);
       ctx.fillStyle = 'black';
       ctx.fill();
     })
   }
-
-  //rysowanie jeśli node i przyjaciele
-  /* this.draw = function(){
-      var canvas = document.getElementById("mynetwork");
-      var ctx= canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      edges.forEach(function(edge){
-        ctx.beginPath();
-        ctx.moveTo(edge.getNode1().getXCoordinate(),edge.getNode1().getYCoordinate());
-        ctx.lineTo(edge.getNode2().getXCoordinate(),edge.getNode2().getYCoordinate());
-        ctx.strokeStyle = edge.getNode2().getColor();
-        //ctx.arc(node.getXCoordinate(),node.getYCoordinate(),4,0,2*Math.PI);
-        //ctx.fillStyle= 'red';
-        //ctx.fill();
-        ctx.stroke();
-      });
-      nodes.forEach(function(node){
-        ctx.beginPath();
-        ctx.arc(node.getXCoordinate(),node.getYCoordinate(),4,0,2*Math.PI);
-        ctx.fillStyle = node.getColor();
-        ctx.fill();
-        node.getFriends().forEach(function(friend){
-          ctx.beginPath();
-          ctx.moveTo(node.getXCoordinate(),node.getYCoordinate());
-          ctx.lineTo(friend.getNode().getXCoordinate(),friend.getNode().getYCoordinate());
-          ctx.strokeStyle = node.getColor();
-          //ctx.arc(node.getXCoordinate(),node.getYCoordinate(),4,0,2*Math.PI);
-          //ctx.fillStyle= 'red';
-          //ctx.fill();
-          ctx.stroke();
-        });
-      });
-
-    }*/
 }
 
 function getColor(weight) {

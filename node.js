@@ -4,12 +4,6 @@ function Node(id,name, interests, XCoordinate, YCoordinate){
   this.interests = interests;
   this.XCoordinate = XCoordinate;
   this.YCoordinate = YCoordinate;
-  //this.color = color;
-  //this.friends = friends;
-
-/*  this.addFriend = function(friend){
-    this.friends.push(friend);
-  }*/
 
   this.setXCoordinate = function(XCoordinate){
     this.XCoordinate = XCoordinate;
@@ -31,14 +25,6 @@ function Node(id,name, interests, XCoordinate, YCoordinate){
     this.interests = interests;
   }
 
-/*  this.setFriends = function(friends){
-    this.friends = friends;
-  }*/
-
-  /*this.getColor = function(){
-    return this.color;
-  }*/
-
   this.getXCoordinate = function(){
     return this.XCoordinate;
   }
@@ -58,10 +44,6 @@ function Node(id,name, interests, XCoordinate, YCoordinate){
   this.getInterests = function(){
     return this.interests;
   }
-
-/*  this.getFriends = function(){
-    return this.friends;
-  }*/
 
   this.toString = function(){
     var str = this.id + ' ' + this.name + ' (';
