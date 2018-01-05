@@ -1,9 +1,8 @@
 
-var edgesS = []
-var nodesS = []
+var edges = []
+var nodes = []
 var playAnimation = true
 var nodesToDraw = []
-var numberOfNodesToDraw = 300
 
 function main(){
   var request = new XMLHttpRequest();
@@ -20,7 +19,6 @@ function main(){
   mydata1.length
   var interests = ['Scuba diving','River rafting','Bungee jumping','Skiing','Trekking','Ice skating','Surfing','Racing','Gymnastics','Hunting','Cook foods in disguise','Painting','Graffiti art','Creative writing','Dancing/choreography','Singing/composing music','Sculpting','Model building','Interior decorating','Jewelry-making','Computer games','Video gaming','Social networking','Keeping virtual pets','Creating software','Internet browsing','Blogging','Building computers and robots','Fishing','Archery','Boating','Traveling','Camping','Kayaking','Kart racing','Golfing','Swimming','Skateboarding','Playing cards','Tarot card reading','Playing board games','Watching movies','Cubing','Bowling','Billiards','Ping pong/table tennis','Pottery','Birdwatching','Geocaching','Photography','Cloud watching','Stargazing','People watching','Herping (looking for reptiles)','Amateur meteorology','Reading','Yoga','Meditation','Exercising and body building','Participating in marathons','Jumping rope','Swimming','Martial arts','Fitness counseling','Recipe creation'];
 
-  var nodes = [];
   x = 1280 - 20;
   y = 720 - 15;
   numberOfNodeY = 30;
@@ -40,8 +38,22 @@ function main(){
     }
   });
 
+  mydata.forEach(function (edge){
+    edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight, nodes[nodes.findIndex(i => i.id === edge.Target)], false));
+  });
+
+
+}
+main();
+
+function start(){
+
+  maxNumberOfNewFriendships = $('input[name="maxNumberOfNewFriendships"]').val()
+  precentageOfFriends = $('input[name="precentageOfFriends"]').val()
+  var numberOfNodesToDraw = $('input[name="numberOfNodesToDraw"]').val()
   nodesToDraw = getUnique(numberOfNodesToDraw, nodes)
   radius = 398
+  console.log(numberOfNodesToDraw);
   nodes.forEach(function(node){
     for(var i = 0; i < numberOfNodesToDraw; i++){
       angle = 2 * (Math.PI / numberOfNodesToDraw) * i
@@ -51,23 +63,7 @@ function main(){
       nodes[nodes.findIndex(z => z.getId() === nodesToDraw[i].getId())].setYCoordinate(yCord + 400)
     }
   })
-
-  var edges = [];
-  mydata.forEach(function (edge){
-    edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight, nodes[nodes.findIndex(i => i.id === edge.Target)], false));
-  });
-
-  nodesS = nodes;
-  edgesS = edges;
-
-}
-main();
-
-function start(){
-  playAnimation = true;
-  maxNumberOfNewFriendships = $('input[name="maxNumberOfNewFriendships"]').val()
-  precentageOfFriends = $('input[name="precentageOfFriends"]').val()
-  var graph = new Graph(nodesS, edgesS, nodesToDraw, maxNumberOfNewFriendships, precentageOfFriends);
+  var graph = new Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageOfFriends);
   var ir = 0;
 
   var ctx2 = $("#myChart");
@@ -79,23 +75,24 @@ function start(){
           //label: '# of Votes',
           data: [0, 0, 0, 0, 0],
           backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)'
+              'rgba(255, 255, 0, 0.2)',
+              'rgba(100, 149, 237, 0.2)',
+              'rgba(76, 1666, 76, 0.2)',
+              'rgba(233, 60, 172, 0.2)',
+              'rgba(255, 0, 0, 0.2)'
           ],
           borderColor: [
-              'rgba(255,99,132,1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)'
+              'rgba(255, 255, 0, 1)',
+              'rgba(100, 149, 237, 1)',
+              'rgba(76, 1666, 76, 1)',
+              'rgba(233, 60, 172, 1)',
+              'rgba(255, 0, 0, 1)'
           ],
           borderWidth: 1
       }]
   },
   options: {
+      responsive: false,
       scales: {
           yAxes: [{
               ticks: {
@@ -106,8 +103,8 @@ function start(){
   }
   });
 
-  repeatOften();
-  function repeatOften(){
+  animate();
+  function animate(){
     if(playAnimation){
       graph.draw();
       myChart.data.datasets[0].data[0] = graph.getEdges().filter(x => x.getWeigth() < 0.2).length
@@ -115,12 +112,11 @@ function start(){
       myChart.data.datasets[0].data[2] = graph.getEdges().filter(x => x.getWeigth() < 0.6 && x.getWeigth() >= 0.4).length
       myChart.data.datasets[0].data[3] = graph.getEdges().filter(x => x.getWeigth() < 0.8 && x.getWeigth() >= 0.6).length
       myChart.data.datasets[0].data[4] = graph.getEdges().filter(x => x.getWeigth() >= 0.8).length
-      console.log()
       myChart.update()
       graph.updateEdges();
       if(ir % 7 == 0) graph.addNewEdge();
       ir++;
-      requestAnimationFrame(repeatOften);
+      requestAnimationFrame(animate);
     }
   }
 }

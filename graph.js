@@ -67,8 +67,11 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
       if(list.length === 0){
         numberOfFriendshipsToImprove = 0
       }
-      else if(list.length < 3){
+      else if(Math.round(list.length * this.precentageOfFriends) < 0.7){
         numberOfFriendshipsToImprove = 1
+      }
+      else if(Math.round(list.length * this.precentageOfFriends) < 1){
+        numberOfFriendshipsToImprove = Math.round(list.length * this.precentageOfFriends) * (list.length /2)
       }
       else {
         numberOfFriendshipsToImprove = Math.round(list.length * this.precentageOfFriends)
@@ -107,18 +110,17 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
     })
   }
 
-  //na edgach
+
   this.addNewEdge = function(){
     var tab = getUnique(this.maxNumberOfNewFriendships, nodes);
     tab.forEach(function(node1){
-
-    var friendsOfNode1 = [];
-          /*  edges.forEach(function(edge){
-              if(edge.getNode1().getId() === node1.getId()){
+     var friendsOfNode1 = [];
+    /*  edges.forEach(function(edge){
+          if(edge.getNode1().getId() === node1.getId()){
                 friendsOfNode1.push(edge);
               }
             })
-            console.log(friendsOfNode1.length);
+            //console.log(friendsOfNode1.length);
             if(friendsOfNode1.length > 0){
               var connectorBetween = friendsOfNode1[Math.floor(Math.random() * friendsOfNode1.length)].getNode1()
 
@@ -139,7 +141,7 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
               })
               if(saJuz === 0){
                 edges.push(new Edge(node1, 0.1, node2));
-                console.log('xDDD')
+                console.log("xDDD")
               }
             }*/
 
@@ -181,7 +183,7 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
             }
           })
           if(ma_juz_polonczenie === 0){
-            edges.push(new Edge(node1,0.15,nodes[node_id2]));
+            edges.push(new Edge(node1,0.11,nodes[node_id2]));
           }
         }
       }
@@ -193,7 +195,7 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
           if(firstFriendNode[0] !== node1){
             //console.log('jest ok');
             //console.log(firstFriendNode[0]);
-            edges.push(new Edge(node1, 0.2, firstFriendNode[0]));
+            edges.push(new Edge(node1, 0.21, firstFriendNode[0]));
           }
         }
       }
