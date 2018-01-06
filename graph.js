@@ -55,14 +55,12 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
       }
     });
     console.log(edges.length);*/
+    //console.log("nowe5")
     this.nodes.forEach(function(node){
       var list = [];
-      edges.forEach(function(edge){
-        if((node.getId() === edge.getNode1().getId() && edge.getUpdated() == false) || (node.getId() === edge.getNode2().getId() && edge.getUpdated() == false)){
-          list.push(edge);
-          edge.setUpdated(true);
-        }
-      })
+      list.push(...(edges.filter(x => x.getNode1().getId() === node.getId() && x.getUpdated() == false)))
+      list.push(...(edges.filter(x => x.getNode2().getId() === node.getId() && x.getUpdated() == false)))
+      list.map((element)=>{element.setUpdated(true)})
       var numberOfFriendshipsToImprove = 0;
       if(list.length === 0){
         numberOfFriendshipsToImprove = 0
@@ -202,6 +200,32 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
 
       //console.log(t.toString());
     });
+  }
+
+  this.addNewEdgeSameInterests = function(){
+    var tab1 = getUnique(this.maxNumberOfNewFriendships, nodes)
+    var tmp = []
+    nodes.forEach(function(key) {
+      if (-1 === tab1.indexOf(key)) {
+        tmp.push(key);
+      }
+    })
+    var tab2 = getUnique(this.maxNumberOfNewFriendships, tmp)
+    for(var i = 0; i< tab1.length; i++){
+      node1 = getUnique(1, tab1)
+      node1 = node1[0]
+      nodesToBeFriend = getUnique(this.maxNumberOfNewFriendships * 0.1, tab2)
+      nodesToBeFriend.forEach(function(node2){
+        commonInterests = (node1.getInterests()).filter(function(x){
+            return node2.getInterests().includes(x);
+        })
+
+        if(commonInterests > 0){
+          edges.push(new Edge(node1, 0.31, node2))
+        }
+      })
+
+    }
   }
   //friend
   /*this.addNewFriend = function(){

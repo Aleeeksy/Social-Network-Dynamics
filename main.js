@@ -3,6 +3,7 @@ var edges = []
 var nodes = []
 var playAnimation = true
 var nodesToDraw = []
+var interests = ['Scuba diving','River rafting','Bungee jumping','Skiing','Trekking','Ice skating','Surfing','Racing','Gymnastics','Hunting','Cook foods in disguise','Painting','Graffiti art','Creative writing','Dancing/choreography','Singing/composing music','Sculpting','Model building','Interior decorating','Jewelry-making','Computer games','Video gaming','Social networking','Keeping virtual pets','Creating software','Internet browsing','Blogging','Building computers and robots','Fishing','Archery','Boating','Traveling','Camping','Kayaking','Kart racing','Golfing','Swimming','Skateboarding','Playing cards','Tarot card reading','Playing board games','Watching movies','Cubing','Bowling','Billiards','Ping pong/table tennis','Pottery','Birdwatching','Geocaching','Photography','Cloud watching','Stargazing','People watching','Herping (looking for reptiles)','Amateur meteorology','Reading','Yoga','Meditation','Exercising and body building','Participating in marathons','Jumping rope','Swimming','Martial arts','Fitness counseling','Recipe creation'];
 
 function main(){
   var request = new XMLHttpRequest();
@@ -17,31 +18,16 @@ function main(){
     return parseFloat(a.Source) - parseFloat(b.Source);
   });*/
   mydata1.length
-  var interests = ['Scuba diving','River rafting','Bungee jumping','Skiing','Trekking','Ice skating','Surfing','Racing','Gymnastics','Hunting','Cook foods in disguise','Painting','Graffiti art','Creative writing','Dancing/choreography','Singing/composing music','Sculpting','Model building','Interior decorating','Jewelry-making','Computer games','Video gaming','Social networking','Keeping virtual pets','Creating software','Internet browsing','Blogging','Building computers and robots','Fishing','Archery','Boating','Traveling','Camping','Kayaking','Kart racing','Golfing','Swimming','Skateboarding','Playing cards','Tarot card reading','Playing board games','Watching movies','Cubing','Bowling','Billiards','Ping pong/table tennis','Pottery','Birdwatching','Geocaching','Photography','Cloud watching','Stargazing','People watching','Herping (looking for reptiles)','Amateur meteorology','Reading','Yoga','Meditation','Exercising and body building','Participating in marathons','Jumping rope','Swimming','Martial arts','Fitness counseling','Recipe creation'];
 
-  x = 1280 - 20;
-  y = 720 - 15;
-  numberOfNodeY = 30;
-  numberOfNodeX = 53;
-  addX = x / numberOfNodeX;
-  addY = y / numberOfNodeY;
-  startX = 20;
-  startY = 15;
   mydata1.forEach(function (node){
-    var random = Math.floor((Math.random() * 10) + 5);
-    var fewInterests = getUnique(random, interests);
-    nodes.push(new Node(node.id, node.label, fewInterests, 300, 300)); //zero na ostatnich
-    startX += addX;
-    if(startX >= x){
-      startX = 20;
-      startY += addY;
-    }
+    nodes.push(new Node(node.id, node.label, [], 300, 300)); //zero na ostatnich
   });
 
   mydata.forEach(function (edge){
     edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight, nodes[nodes.findIndex(i => i.id === edge.Target)], false));
   });
 
+  //averageDistance(graph)
 
 }
 main();
@@ -51,10 +37,16 @@ function start(){
   maxNumberOfNewFriendships = $('input[name="maxNumberOfNewFriendships"]').val()
   precentageOfFriends = $('input[name="precentageOfFriends"]').val()
   var numberOfNodesToDraw = $('input[name="numberOfNodesToDraw"]').val()
+  var minNumberOfInterests = $('input[name="minNumberOfInterests"]').val()
+  var maxNumberOfInterests = $('input[name="maxNumberOfInterests"]').val()
+
   nodesToDraw = getUnique(numberOfNodesToDraw, nodes)
   radius = 398
-  console.log(numberOfNodesToDraw);
   nodes.forEach(function(node){
+    var random = Math.floor(Math.random() * (maxNumberOfInterests - minNumberOfInterests + 1) + minNumberOfInterests); // random coś nie losuje z dane rzedziału chodź powinien...
+    //console.log(maxNumberOfInterests + " " + minNumberOfInterests + " " + random)
+    node.setInterests(getUnique(random, interests))
+  })
     for(var i = 0; i < numberOfNodesToDraw; i++){
       angle = 2 * (Math.PI / numberOfNodesToDraw) * i
       xCord = radius * Math.cos(angle)
@@ -62,7 +54,7 @@ function start(){
       nodes[nodes.findIndex(z => z.getId() === nodesToDraw[i].getId())].setXCoordinate(xCord + 400)
       nodes[nodes.findIndex(z => z.getId() === nodesToDraw[i].getId())].setYCoordinate(yCord + 400)
     }
-  })
+
   var graph = new Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageOfFriends);
   var ir = 0;
 
