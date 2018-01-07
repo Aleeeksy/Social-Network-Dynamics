@@ -258,7 +258,7 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
     nodesToDraw.forEach(function(node){
       ctx.beginPath();
       ctx.arc(node.getXCoordinate(),node.getYCoordinate(),2,0,2*Math.PI);
-      ctx.fillStyle = 'black';
+      ctx.fillStyle = 'white';
       ctx.fill();
     })
   }

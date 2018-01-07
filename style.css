@@ -1,6 +1,7 @@
 body{
   max-width: 800px;
   margin: auto;
+  background-color: #000000;
 }
 
 footer {
@@ -113,4 +114,8 @@ input[type="radio"] + label{
 .form-div input[type="submit"]:hover {
     background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
     background-color:#34CACA;
+}
+
+#numberOfEdges {
+  color: white;
 }
