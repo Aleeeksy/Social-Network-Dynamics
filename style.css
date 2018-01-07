@@ -32,11 +32,15 @@ footer p {
     font-family: 'Open Sans Condensed', arial, sans;
     width: 500px;
     padding: 30px;
-    background: #FFFFFF;
+    background-color: #111111; 
+    /*background: #FFFFFF;*/
     margin: 50px auto;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    /*box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
     -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-    -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+    -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22); */
+    -moz-box-shadow:0 3px 4px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7) inset;
+    -webkit-box-shadow:0 3px 4px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7) inset;
+    box-shadow:0 3px 4px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7) inset;
 
 }
 
@@ -78,6 +82,7 @@ input[type="radio"] + label{
     margin-bottom: 10px;
     font: 16px Arial, Helvetica, sans-serif;
     height: 45px;
+    color: white;
 }
 
 .maxNumber{
@@ -117,5 +122,9 @@ input[type="radio"] + label{
 }
 
 #numberOfEdges {
+  color: white;
+}
+
+#radioButtons {
   color: white;
 }
