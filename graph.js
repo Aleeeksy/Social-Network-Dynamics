@@ -79,10 +79,10 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
       if((los === 0 || los == 2) && list.length === 1){
         list[0].update1Edge();
       }
-      if(los === 1 && list.length === 1){
+      else if(los === 1 && list.length === 1){
         list[0].update2Edge();
       }
-      else if(numberOfFriendshipsToImprove > 0 && list.length > 1){
+      if(numberOfFriendshipsToImprove > 0 && list.length > 1){
         var friendshipsToImprove = getUnique(numberOfFriendshipsToImprove, list);
         var friendshipsToDestroy = list.filter(x => friendshipsToImprove.indexOf(x) === -1);
         /*console.log("łacznie: ", list.length)
@@ -93,6 +93,7 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
             element.update1Edge()
           }
         })
+
         friendshipsToDestroy.forEach(function(element){
           if(element != null) {
             element.update2Edge()
@@ -109,7 +110,7 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
   }
 
 
-  this.addNewEdge = function(){
+  this.addNewEdgesHaveCommonFriends = function(){
     var tab = getUnique(this.maxNumberOfNewFriendships, nodes);
     tab.forEach(function(node1){
      var friendsOfNode1 = [];
@@ -202,7 +203,7 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
     });
   }
 
-  this.addNewEdgeSameInterests = function(){
+  this.addNewEdgeHaveCommonInterests = function(){
     var tab1 = getUnique(this.maxNumberOfNewFriendships, nodes)
     var tmp = []
     nodes.forEach(function(key) {
@@ -214,14 +215,14 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
     for(var i = 0; i< tab1.length; i++){
       node1 = getUnique(1, tab1)
       node1 = node1[0]
-      nodesToBeFriend = getUnique(this.maxNumberOfNewFriendships * 0.1, tab2)
+      nodesToBeFriend = getUnique(this.maxNumberOfNewFriendships * 0.03, tab2)
       nodesToBeFriend.forEach(function(node2){
         commonInterests = (node1.getInterests()).filter(function(x){
             return node2.getInterests().includes(x);
         })
-
-        if(commonInterests > 0){
-          edges.push(new Edge(node1, 0.31, node2))
+        var maxNumberOfInterests = $('input[name="maxNumberOfInterests"]').val()
+        if(commonInterests.length > 0){
+          edges.push(new Edge(node1, 0.33 + commonInterests.length * 0.02, node2))
         }
       })
 

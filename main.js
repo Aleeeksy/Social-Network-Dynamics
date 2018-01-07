@@ -3,6 +3,7 @@ var edges = []
 var nodes = []
 var playAnimation = true
 var nodesToDraw = []
+var howToAddNewFriendships
 var interests = ['Scuba diving','River rafting','Bungee jumping','Skiing','Trekking','Ice skating','Surfing','Racing','Gymnastics','Hunting','Cook foods in disguise','Painting','Graffiti art','Creative writing','Dancing/choreography','Singing/composing music','Sculpting','Model building','Interior decorating','Jewelry-making','Computer games','Video gaming','Social networking','Keeping virtual pets','Creating software','Internet browsing','Blogging','Building computers and robots','Fishing','Archery','Boating','Traveling','Camping','Kayaking','Kart racing','Golfing','Swimming','Skateboarding','Playing cards','Tarot card reading','Playing board games','Watching movies','Cubing','Bowling','Billiards','Ping pong/table tennis','Pottery','Birdwatching','Geocaching','Photography','Cloud watching','Stargazing','People watching','Herping (looking for reptiles)','Amateur meteorology','Reading','Yoga','Meditation','Exercising and body building','Participating in marathons','Jumping rope','Swimming','Martial arts','Fitness counseling','Recipe creation'];
 
 function main(){
@@ -36,10 +37,11 @@ function start(){
 
   maxNumberOfNewFriendships = $('input[name="maxNumberOfNewFriendships"]').val()
   precentageOfFriends = $('input[name="precentageOfFriends"]').val()
+  howToAddNewFriendships = $('input[name="howToAddNewFriendships"]:checked').val()
   var numberOfNodesToDraw = $('input[name="numberOfNodesToDraw"]').val()
   var minNumberOfInterests = $('input[name="minNumberOfInterests"]').val()
   var maxNumberOfInterests = $('input[name="maxNumberOfInterests"]').val()
-
+  console.log(howToAddNewFriendships)
   nodesToDraw = getUnique(numberOfNodesToDraw, nodes)
   radius = 398
   nodes.forEach(function(node){
@@ -99,14 +101,22 @@ function start(){
   function animate(){
     if(playAnimation){
       graph.draw();
+      graph.updateEdges();
       myChart.data.datasets[0].data[0] = graph.getEdges().filter(x => x.getWeigth() < 0.2).length
       myChart.data.datasets[0].data[1] = graph.getEdges().filter(x => x.getWeigth() < 0.4 && x.getWeigth() >= 0.2).length
       myChart.data.datasets[0].data[2] = graph.getEdges().filter(x => x.getWeigth() < 0.6 && x.getWeigth() >= 0.4).length
       myChart.data.datasets[0].data[3] = graph.getEdges().filter(x => x.getWeigth() < 0.8 && x.getWeigth() >= 0.6).length
       myChart.data.datasets[0].data[4] = graph.getEdges().filter(x => x.getWeigth() >= 0.8).length
       myChart.update()
-      graph.updateEdges();
-      if(ir % 7 == 0) graph.addNewEdge();
+
+     if(ir % 7 == 0){
+       if(howToAddNewFriendships == "connection"){
+          graph.addNewEdgesHaveCommonFriends()
+       }
+       else if(howToAddNewFriendships == "interests"){
+         graph.addNewEdgeHaveCommonInterests()
+        }
+      }
       ir++;
       requestAnimationFrame(animate);
     }

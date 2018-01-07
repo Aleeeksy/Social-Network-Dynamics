@@ -38,6 +38,7 @@ footer p {
     -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
 
 }
+
 .form-div h2{
     background: #4D4D4D;
     text-transform: uppercase;
@@ -48,6 +49,17 @@ footer p {
     padding: 20px;
     margin: -30px -30px 30px -30px;
 }
+
+input[type="radio"] + label{
+  opacity: 0.6;
+  display:inline-block;
+  padding: 7px;
+  border: none;
+  background: transparent;
+  margin-bottom: 10px;
+  font: 16px Arial, Helvetica, sans-serif;
+}
+
 .form-div input[type="text"],
 .form-div textarea,
 .form-div select
@@ -66,6 +78,17 @@ footer p {
     font: 16px Arial, Helvetica, sans-serif;
     height: 45px;
 }
+
+.maxNumber{
+  width: 47.5% !important;
+  float: right !important;
+}
+
+.minNumber{
+  width: 47.5% !important;
+  float: left !important;
+}
+
 .form-div textarea{
     resize:none;
     overflow: hidden;
