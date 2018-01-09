@@ -101,6 +101,7 @@ function start(){
   function animate(){
     if(playAnimation){
       graph.draw();
+      averageDistance(graph);
       graph.updateEdges();
       myChart.data.datasets[0].data[0] = graph.getEdges().filter(x => x.getWeigth() < 0.2).length
       myChart.data.datasets[0].data[1] = graph.getEdges().filter(x => x.getWeigth() < 0.4 && x.getWeigth() >= 0.2).length
@@ -126,18 +127,4 @@ function start(){
 
 function stop(){
   playAnimation = false;
-}
-
-function getUnique(count, array) {
-  // Make a copy of the array
-  var tmp = array.slice(array);
-  var ret = [];
-
-  for (var i = 0; i < count; i++) {
-    var index = Math.floor(Math.random() * tmp.length);
-    var removed = tmp.splice(index, 1);
-    // Since we are only removing one element
-    ret.push(removed[0]);
-  }
-  return ret;
 }
