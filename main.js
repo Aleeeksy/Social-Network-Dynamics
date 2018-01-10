@@ -39,14 +39,14 @@ function start(){
   precentageOfFriends = $('input[name="precentageOfFriends"]').val()
   howToAddNewFriendships = $('input[name="howToAddNewFriendships"]:checked').val()
   var numberOfNodesToDraw = $('input[name="numberOfNodesToDraw"]').val()
-  var minNumberOfInterests = $('input[name="minNumberOfInterests"]').val()
-  var maxNumberOfInterests = $('input[name="maxNumberOfInterests"]').val()
+  var minNumberOfInterests = parseInt($('input[name="minNumberOfInterests"]').val())
+  var maxNumberOfInterests = parseInt($('input[name="maxNumberOfInterests"]').val())
   console.log(howToAddNewFriendships)
   nodesToDraw = getUnique(numberOfNodesToDraw, nodes)
   radius = 398
   nodes.forEach(function(node){
-    var random = Math.floor(Math.random() * (maxNumberOfInterests - minNumberOfInterests + 1) + minNumberOfInterests); // random coś nie losuje z dane rzedziału chodź powinien...
-    //console.log(maxNumberOfInterests + " " + minNumberOfInterests + " " + random)
+    var random = Math.floor(Math.random() * (maxNumberOfInterests - minNumberOfInterests + 1)) + minNumberOfInterests;
+
     node.setInterests(getUnique(random, interests))
   })
     for(var i = 0; i < numberOfNodesToDraw; i++){
@@ -110,15 +110,13 @@ function start(){
       myChart.data.datasets[0].data[4] = graph.getEdges().filter(x => x.getWeigth() >= 0.8).length
       myChart.update()
 
-     if(ir % 7 == 0){
        if(howToAddNewFriendships == "connection"){
           graph.addNewEdgesHaveCommonFriends()
        }
        else if(howToAddNewFriendships == "interests"){
          graph.addNewEdgeHaveCommonInterests()
         }
-      }
-      ir++;
+
       requestAnimationFrame(animate);
     }
   }

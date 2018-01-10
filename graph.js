@@ -211,17 +211,16 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
         tmp.push(key);
       }
     })
-    var tab2 = getUnique(this.maxNumberOfNewFriendships, tmp)
     for(var i = 0; i< tab1.length; i++){
       node1 = getUnique(1, tab1)
       node1 = node1[0]
-      nodesToBeFriend = getUnique(this.maxNumberOfNewFriendships * 0.03, tab2)
+      nodesToBeFriend = getUnique(this.maxNumberOfNewFriendships * 0.03, tab1)
       nodesToBeFriend.forEach(function(node2){
         commonInterests = (node1.getInterests()).filter(function(x){
             return node2.getInterests().includes(x);
         })
         var maxNumberOfInterests = $('input[name="maxNumberOfInterests"]').val()
-        if(commonInterests.length > 0){
+        if(commonInterests.length > 0 && (node1.getId() != node2.getId())){
           edges.push(new Edge(node1, 0.33 + commonInterests.length * 0.02, node2))
         }
       })
@@ -258,7 +257,7 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
     nodesToDraw.forEach(function(node){
       ctx.beginPath();
       ctx.arc(node.getXCoordinate(),node.getYCoordinate(),2,0,2*Math.PI);
-      ctx.fillStyle = 'white';
+      ctx.fillStyle = 'black';
       ctx.fill();
     })
   }

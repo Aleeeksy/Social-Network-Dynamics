@@ -8,16 +8,15 @@ function averageDistance(graph){
   graph.getEdges().forEach(function(edge){
     edges[edge.getNode1().getId()].push(edge)
   })
-  var suma = 0
+  var max = 0
   var ir = 0
   for(var i = 0; i < list.length; i++){
     if(edges[list[i].getId()].length > 0){
         for(var j = 0; j< list.length; j++){
-          var dodawane = minEdgeBFS(edges, list[i].getId(), list[j].getId(),graph.getNodes().length)
-          if(dodawane > 0){
-            ir++;
+          var nowyMax = minEdgeBFS(edges, list[i].getId(), list[j].getId(),graph.getNodes().length)
+          if(nowyMax > max){
+            max = nowyMax;
           }
-          suma += dodawane
         }
     }
 
@@ -28,9 +27,9 @@ function averageDistance(graph){
     //      suma += minEdgeBFS(edges, i, j, graph.getNodes().length)
     //  }
     //}
-    console.log('suma:' + suma + " itereator " + ir)
+    console.log('suma:' + max + " itereator " + ir)
 
-  console.log(suma)
+  console.log(max)
 }
 
 
@@ -46,8 +45,6 @@ function minEdgeBFS(edges,start,end, numberOfNodes){
       visited[i] = false
     }
 
-
-    // queue to do BFS.
     var queue = []
     distance[start] = 0
 
@@ -61,7 +58,6 @@ function minEdgeBFS(edges,start,end, numberOfNodes){
             if (visited[edges[x][i].getNode2().getId()])
                 continue;
 
-            // update distance for i
             distance[edges[x][i].getNode2().getId()] = distance[x] + 1;
             queue.push(edges[x][i].getNode2().getId());
             visited[edges[x][i].getNode2().getId()] = true;
