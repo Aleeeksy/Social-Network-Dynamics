@@ -28,7 +28,6 @@ function main(){
     edges.push(new Edge(nodes[nodes.findIndex(i => i.id === edge.Source)],edge.Weight, nodes[nodes.findIndex(i => i.id === edge.Target)], false));
   });
 
-  //averageDistance(graph)
 
 }
 main();
@@ -101,7 +100,8 @@ function start(){
   function animate(){
     if(playAnimation){
       graph.draw();
-      averageDistance(graph);
+      //var nodesAverageDistance = getUnique(graph.getNodes().length * 0.05, graph.getNodes())
+      //averageDistance(nodesToAverageDistance);
       graph.updateEdges();
       myChart.data.datasets[0].data[0] = graph.getEdges().filter(x => x.getWeigth() < 0.2).length
       myChart.data.datasets[0].data[1] = graph.getEdges().filter(x => x.getWeigth() < 0.4 && x.getWeigth() >= 0.2).length
@@ -109,7 +109,9 @@ function start(){
       myChart.data.datasets[0].data[3] = graph.getEdges().filter(x => x.getWeigth() < 0.8 && x.getWeigth() >= 0.6).length
       myChart.data.datasets[0].data[4] = graph.getEdges().filter(x => x.getWeigth() >= 0.8).length
       myChart.update()
-
+      $("#numberOfEdges").text("Number of edges: " + graph.getEdges().length)
+      var networkDensity = graph.getEdges().length/((graph.getNodes().length*(graph.getNodes().length-1))/2)
+      $("#networkDensity").text("Network density: " + parseFloat(networkDensity.toFixed(6)))
        if(howToAddNewFriendships == "connection"){
           graph.addNewEdgesHaveCommonFriends()
        }

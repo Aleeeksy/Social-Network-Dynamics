@@ -1,7 +1,30 @@
 
-function averageDistance(graph){
+function averageDistance(list){
   var edges = []
-  list = getUnique(100, graph.getNodes())
+  for(var i = 0; i < graph.getNodes().length; i++){
+    edges[i]= []
+  }
+  graph.getEdges().forEach(function(edge){
+    edges[edge.getNode1().getId()].push(edge)
+  })
+  var suma = 0
+  var ir = 0
+  for(var i = 0; i < list.length; i++){
+    if(edges[list[i].getId()].length > 0){
+        for(var j = 0; j< list.length; j++){
+          var dodawane = minEdgeBFS(edges, list[i].getId(), list[j].getId(),graph.getNodes().length)
+          if(dodawane > 0){
+            ir++;
+          }
+          suma += dodawane
+        }
+    }
+
+  }
+}
+
+function longestDistance(list){
+  var edges = []
   for(var i = 0; i < graph.getNodes().length; i++){
     edges[i]= []
   }

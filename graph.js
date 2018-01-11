@@ -42,7 +42,7 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
   }*/
 
   this.updateEdges = function(){
-    $("#numberOfEdges").text("Number of edges: " + edges.length)
+    var sumNodeDegree = 0
     this.edges.map((element) => {element.setUpdated(false)})
     /*this.edges.forEach(function (edge){
       edge.updateEdge();
@@ -60,6 +60,7 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
       var list = [];
       list.push(...(edges.filter(x => x.getNode1().getId() === node.getId() && x.getUpdated() == false)))
       list.push(...(edges.filter(x => x.getNode2().getId() === node.getId() && x.getUpdated() == false)))
+      sumNodeDegree += list.length;
       list.map((element)=>{element.setUpdated(true)})
       var numberOfFriendshipsToImprove = 0;
       if(list.length === 0){
@@ -107,6 +108,8 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
         })
       }
     })
+    var averageNodeDegree = sumNodeDegree / this.nodes.length
+    $("#averageNodeDegree").text("Average Node Degree: " + parseFloat(averageNodeDegree.toFixed(6)))
   }
 
 
