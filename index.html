@@ -6,6 +6,7 @@
     <title>javascript test</title>
     <meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="node.js"></script>
     <script src="graph.js"></script>
     <script src="edge.js"></script>
@@ -46,6 +47,10 @@
 			<input type="button" value="Start" onclick="javascript:start();"/>
 			<input type="button" value="Stop" onclick="javascript:stop();"/>
 			<input type="button" value="Resume" onclick="javascript:animate();"/>
+			<div id="mode" style="float: right;">
+			<input type="button" id="light" value="Light mode" onclick="javascript:setLightMode();"/>
+			<input type="button" id="dark" value="Dark mode" onclick="javascript:setDarkMode()"/>
+			</div>
 		</form>
 	</div>
 

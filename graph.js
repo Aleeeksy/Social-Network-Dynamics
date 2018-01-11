@@ -260,7 +260,11 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
     nodesToDraw.forEach(function(node){
       ctx.beginPath();
       ctx.arc(node.getXCoordinate(),node.getYCoordinate(),2,0,2*Math.PI);
-      ctx.fillStyle = 'black';
+      if (!$("link[href='style1.css']").length) {
+        ctx.fillStyle = 'black'; 
+      } else {
+        ctx.fillStyle = 'white';
+      }
       ctx.fill();
     })
   }

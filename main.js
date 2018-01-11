@@ -128,3 +128,15 @@ function start(){
 function stop(){
   playAnimation = false;
 }
+
+function setLightMode(){
+  $('#light').click(function (){
+    $('link[href="style1.css"]').attr('href','style.css');
+  });
+}
+
+function setDarkMode(){
+  $('#dark').click(function (){
+    $('link[href="style.css"]').attr('href','style1.css');
+  });
+}
