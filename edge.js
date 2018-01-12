@@ -38,21 +38,21 @@ function Edge(node1, weight, node2, updated){
 
   this.update1Edge = function(){
     var commonInterests = (node1.getInterests()).filter(function(x){
-        return node2.getInterests().includes(x);
+      return node2.getInterests().includes(x);
     })
-      this.weight = this.weight + 0.02 + 0.05 * (commonInterests.length)
-      if(this.weight > 1) this.weight = 0.9;
+    this.weight = this.weight + 0.02 + 0.05 * (commonInterests.length)
+    if(this.weight > 1) this.weight = 0.9;
   }
 
   this.update2Edge = function(){
     var commonInterests = (node1.getInterests()).filter(function(x){
-        return node2.getInterests().includes(x);
+      return node2.getInterests().includes(x);
     })
-      if(this.weight > 1) this.weight = 0.98;
-      else if(this.weight > 0.8) this.weight = this.weight - 0.15
-      else if(this.weight > 0.5) this.weight = this.weight - 0.07
-      else if(this.weight > 0.3) this.weight = this.weight - 0.05
-      else this.weight += -0.03;
+    if(this.weight > 1) this.weight = 0.98;
+    else if(this.weight > 0.8) this.weight = this.weight - 0.15
+    else if(this.weight > 0.5) this.weight = this.weight - 0.07
+    else if(this.weight > 0.3) this.weight = this.weight - 0.05
+    else this.weight += -0.03;
   }
 
   this.toString = function(){

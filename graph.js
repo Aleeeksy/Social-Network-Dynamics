@@ -5,7 +5,6 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
   this.maxNumberOfNewFriendships = maxNumberOfNewFriendships //120
   this.precentageOfFriends = precentageOfFriends  //0.2
 
-
   this.getNodes = function(){
     return this.nodes;
   }

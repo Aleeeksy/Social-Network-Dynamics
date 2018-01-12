@@ -11,15 +11,14 @@ function averageDistance(list){
   var ir = 0
   for(var i = 0; i < list.length; i++){
     if(edges[list[i].getId()].length > 0){
-        for(var j = 0; j< list.length; j++){
-          var dodawane = minEdgeBFS(edges, list[i].getId(), list[j].getId(),graph.getNodes().length)
-          if(dodawane > 0){
-            ir++;
-          }
-          suma += dodawane
+      for(var j = 0; j< list.length; j++){
+        var dodawane = minEdgeBFS(edges, list[i].getId(), list[j].getId(),graph.getNodes().length)
+        if(dodawane > 0){
+          ir++;
         }
+        suma += dodawane
+      }
     }
-
   }
 }
 
@@ -35,23 +34,23 @@ function longestDistance(list){
   var ir = 0
   for(var i = 0; i < list.length; i++){
     if(edges[list[i].getId()].length > 0){
-        for(var j = 0; j< list.length; j++){
-          var nowyMax = minEdgeBFS(edges, list[i].getId(), list[j].getId(),graph.getNodes().length)
-          if(nowyMax > max){
-            max = nowyMax;
-          }
+      for(var j = 0; j< list.length; j++){
+        var nowyMax = minEdgeBFS(edges, list[i].getId(), list[j].getId(),graph.getNodes().length)
+        if(nowyMax > max){
+          max = nowyMax;
         }
+      }
     }
-
   }
+
     //if(edges[i].length > 0 ){
     //  for(var j = 0; j < graph.getNodes().length; j++){
     //    if(i != j)
     //      suma += minEdgeBFS(edges, i, j, graph.getNodes().length)
     //  }
     //}
-    console.log('suma:' + max + " itereator " + ir)
-
+    
+  console.log('suma:' + max + " itereator " + ir)
   console.log(max)
 }
 
@@ -73,14 +72,11 @@ function minEdgeBFS(edges,start,end, numberOfNodes){
 
     queue.push(start);
     visited[start] = true;
-    while (queue.length > 0)
-    {
+    while (queue.length > 0){
         var x = queue.pop();
-        for (var i=0; i<edges[x].length; i++)
-        {
+        for (var i=0; i<edges[x].length; i++){
             if (visited[edges[x][i].getNode2().getId()])
                 continue;
-
             distance[edges[x][i].getNode2().getId()] = distance[x] + 1;
             queue.push(edges[x][i].getNode2().getId());
             visited[edges[x][i].getNode2().getId()] = true;
