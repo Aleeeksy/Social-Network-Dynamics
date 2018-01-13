@@ -35,26 +35,9 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
     });
   }
 
-  /*this.update = function(){
-    this.edges = updateEdges();
-    //this.edges = createNewEdges();
-  }*/
-
   this.updateEdges = function(){
     var sumNodeDegree = 0
     this.edges.map((element) => {element.setUpdated(false)})
-    /*this.edges.forEach(function (edge){
-      edge.updateEdge();
-      if(edge.getWeigth() <= 0){
-        var index = edges.indexOf(edge);
-        //console.log(index);
-        if (index > -1) {
-          this.edges = edges.splice(index, 1);
-        }
-      }
-    });
-    console.log(edges.length);*/
-    //console.log("nowe5")
     this.nodes.forEach(function(node){
       var list = [];
       list.push(...(edges.filter(x => x.getNode1().getId() === node.getId() && x.getUpdated() == false)))
@@ -74,7 +57,6 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
       else {
         numberOfFriendshipsToImprove = Math.round(list.length * this.precentageOfFriends)
       }
-      //if(numberOfFriendshipsToImprove >= 8)numberOfFriendshipsToImprove = 7;
       var los = Math.floor(Math.random() * 3)
       if((los === 0 || los == 2) && list.length === 1){
         list[0].update1Edge();
@@ -85,9 +67,6 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
       if(numberOfFriendshipsToImprove > 0 && list.length > 1){
         var friendshipsToImprove = getUnique(numberOfFriendshipsToImprove, list);
         var friendshipsToDestroy = list.filter(x => friendshipsToImprove.indexOf(x) === -1);
-        /*console.log("łacznie: ", list.length)
-        console.log("do poprawy: ",friendshipsToImprove.length)
-        console.log("do pogorszenia: ",friendshipsToDestroy.length)*/
         friendshipsToImprove.forEach(function(element){
           if(element != null) {
             element.update1Edge()
@@ -116,35 +95,6 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
     var tab = getUnique(this.maxNumberOfNewFriendships, nodes);
     tab.forEach(function(node1){
      var friendsOfNode1 = [];
-    /*  edges.forEach(function(edge){
-          if(edge.getNode1().getId() === node1.getId()){
-                friendsOfNode1.push(edge);
-              }
-            })
-            //console.log(friendsOfNode1.length);
-            if(friendsOfNode1.length > 0){
-              var connectorBetween = friendsOfNode1[Math.floor(Math.random() * friendsOfNode1.length)].getNode1()
-
-
-              var friendsOfConnectorBetween = [];
-              edges.forEach(function(edge){
-                if(edge.getNode1().getId() === connectorBetween.getId()){
-                  friendsOfConnectorBetween.push(edge);
-                }
-              })
-
-              var node2 = friendsOfConnectorBetween[Math.floor(Math.random() * friendsOfConnectorBetween.length)].getNode1()
-              var saJuz = 0;
-              friendsOfNode1.forEach(function(e){
-                if(e.getNode1().getId() === node2.getId()){
-                  saJuz++;
-                }
-              })
-              if(saJuz === 0){
-                edges.push(new Edge(node1, 0.1, node2));
-                console.log("xDDD")
-              }
-            }*/
 
       for(var i = 0; i < edges.length; i++){
         if(edges[i].getNode1().getId() === node1.getId()){
@@ -152,10 +102,8 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
         }
       }
 
-      //console.log(t.length);
       if(friendsOfNode1.length > 0){
         var rand = friendsOfNode1[Math.floor(Math.random() * friendsOfNode1.length)];
-        //console.log(rand);
         var node_id1 = edges[rand].getNode2().getId();
         var n =[]
         for(var i = 0; i < edges.length; i++){
@@ -191,17 +139,13 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
       else if(friendsOfNode1.length === 0){
         var los = Math.round(Math.random())
         if(los === 1){
-          //console.log('nowe');
           var firstFriendNode = getUnique(1,nodes);
           if(firstFriendNode[0] !== node1){
-            //console.log('jest ok');
-            //console.log(firstFriendNode[0]);
+
             edges.push(new Edge(node1, 0.21, firstFriendNode[0]));
           }
         }
       }
-
-      //console.log(t.toString());
     });
   }
 
@@ -229,12 +173,7 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
 
     }
   }
-  //friend
-  /*this.addNewFriend = function(){
 
-  }*/
-
-//rysowanie jeśli edge
   this.draw = function(){
 
     var canvas = document.getElementById("mynetwork");
@@ -247,10 +186,6 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
         ctx.moveTo(edge.getNode1().getXCoordinate(),edge.getNode1().getYCoordinate());
         ctx.lineTo(edge.getNode2().getXCoordinate(),edge.getNode2().getYCoordinate());
         ctx.strokeStyle = getColor(edge.getWeigth());
-
-        //ctx.arc(node.getXCoordinate(),node.getYCoordinate(),4,0,2*Math.PI);
-        //ctx.fillStyle= 'red';
-        //ctx.fill();
         ctx.stroke();
       }
 
@@ -270,9 +205,9 @@ function Graph(nodes, edges, nodesToDraw, maxNumberOfNewFriendships, precentageO
 }
 
 function getColor(weight) {
-  if(weight < 0.2) return '#FFFF00' // żółty
-  else if(weight < 0.4) return  '#6495ED' // niebieski
-  else if(weight < 0.6) return  '#4CA64C' //zielony
-  else if(weight < 0.8) return '#E93CAC' // różowy
+  if(weight < 0.2) return '#FFFF00' 
+  else if(weight < 0.4) return  '#6495ED'
+  else if(weight < 0.6) return  '#4CA64C'
+  else if(weight < 0.8) return '#E93CAC'
   else return '#FF0000' //red
 }

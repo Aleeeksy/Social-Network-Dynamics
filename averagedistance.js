@@ -42,45 +42,36 @@ function longestDistance(list){
       }
     }
   }
-
-    //if(edges[i].length > 0 ){
-    //  for(var j = 0; j < graph.getNodes().length; j++){
-    //    if(i != j)
-    //      suma += minEdgeBFS(edges, i, j, graph.getNodes().length)
-    //  }
-    //}
-    
   console.log('suma:' + max + " itereator " + ir)
   console.log(max)
 }
 
 
 function minEdgeBFS(edges,start,end, numberOfNodes){
-    // visited[n] for keeping track of visited
-    // node in BFS
+  // visited[n] for keeping track of visited node in BFS
 
-    // Initialize distances as 0
-    var visited = []
-    var distance = []
-    for(var i = 0; i < numberOfNodes; i++){
-      distance[i] = 0
-      visited[i] = false
+  // Initialize distances as 0
+  var visited = []
+  var distance = []
+  for(var i = 0; i < numberOfNodes; i++){
+    distance[i] = 0
+    visited[i] = false
+  }
+
+  var queue = []
+  distance[start] = 0
+
+  queue.push(start);
+  visited[start] = true;
+  while (queue.length > 0){
+    var x = queue.pop();
+    for (var i=0; i<edges[x].length; i++){
+      if (visited[edges[x][i].getNode2().getId()])
+        continue;
+      distance[edges[x][i].getNode2().getId()] = distance[x] + 1;
+      queue.push(edges[x][i].getNode2().getId());
+      visited[edges[x][i].getNode2().getId()] = true;
     }
-
-    var queue = []
-    distance[start] = 0
-
-    queue.push(start);
-    visited[start] = true;
-    while (queue.length > 0){
-        var x = queue.pop();
-        for (var i=0; i<edges[x].length; i++){
-            if (visited[edges[x][i].getNode2().getId()])
-                continue;
-            distance[edges[x][i].getNode2().getId()] = distance[x] + 1;
-            queue.push(edges[x][i].getNode2().getId());
-            visited[edges[x][i].getNode2().getId()] = true;
-        }
-    }
-    return distance[end];
+  }
+  return distance[end];
 }
