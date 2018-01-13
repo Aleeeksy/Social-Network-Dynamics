@@ -3,6 +3,7 @@ var edges = []
 var nodes = []
 var playAnimation = true
 var nodesToDraw = []
+var counter = 0
 var howToAddNewFriendships
 var interests = ['Scuba diving','River rafting','Bungee jumping','Skiing','Trekking','Ice skating','Surfing','Racing','Gymnastics','Hunting','Cook foods in disguise','Painting','Graffiti art','Creative writing','Dancing/choreography','Singing/composing music','Sculpting','Model building','Interior decorating','Jewelry-making','Computer games','Video gaming','Social networking','Keeping virtual pets','Creating software','Internet browsing','Blogging','Building computers and robots','Fishing','Archery','Boating','Traveling','Camping','Kayaking','Kart racing','Golfing','Swimming','Skateboarding','Playing cards','Tarot card reading','Playing board games','Watching movies','Cubing','Bowling','Billiards','Ping pong/table tennis','Pottery','Birdwatching','Geocaching','Photography','Cloud watching','Stargazing','People watching','Herping (looking for reptiles)','Amateur meteorology','Reading','Yoga','Meditation','Exercising and body building','Participating in marathons','Jumping rope','Swimming','Martial arts','Fitness counseling','Recipe creation'];
 
@@ -98,7 +99,21 @@ function start(){
 
   animate();
   function animate(){
+
     if(playAnimation){
+      counter++;
+      if(counter%50 == 0){
+          console.log('licznik' + counter);
+          console.log($('#numberOfEdges')[0].innerText);
+          console.log($('#networkDensity')[0].innerText);
+          console.log($('#averageNodeDegree')[0].innerText);
+          console.log(graph.getEdges().filter(x => x.getWeigth() < 0.2).length);
+          console.log(graph.getEdges().filter(x => x.getWeigth() < 0.4 && x.getWeigth() >= 0.2).length);
+          console.log(graph.getEdges().filter(x => x.getWeigth() < 0.6 && x.getWeigth() >= 0.4).length);
+          console.log(graph.getEdges().filter(x => x.getWeigth() < 0.8 && x.getWeigth() >= 0.6).length);
+          console.log(graph.getEdges().filter(x => x.getWeigth() >= 0.8).length);
+      }
+
       graph.draw();
       //var nodesAverageDistance = getUnique(graph.getNodes().length * 0.05, graph.getNodes())
       //averageDistance(nodesToAverageDistance);
