@@ -1,0 +1,129 @@
+body{
+  max-width: 800px;
+  margin: auto;
+  background-color: #000000;
+}
+
+footer {
+  height: 400px;
+  width:  800px;
+  color: white;
+}
+
+footer, #mynetwork{
+  margin-top: 30px;
+}
+
+footer div {
+  position: relative;
+  margin: 0px;
+  width: 400px;
+  float: right;
+  top: 50%;
+}
+
+footer p {
+  font-family: arial;
+  font-size: 20px;
+  top: 50%;
+}
+
+#myChart{
+  float: left;
+}
+
+.form-div{
+  font-family: 'Open Sans Condensed', arial, sans;
+  width: 500px;
+  padding: 30px;
+  color: white;
+  background-color: #111111; 
+  margin: 50px auto;
+  -moz-box-shadow:0 3px 4px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7) inset;
+  -webkit-box-shadow:0 3px 4px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7) inset;
+  box-shadow:0 3px 4px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7) inset;
+}
+
+.form-div h2{
+  background: #4D4D4D;
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: white;
+  font-size: 18px;
+  font-weight: 100;
+  padding: 20px;
+  margin: -30px -30px 30px -30px;
+}
+
+input[type="radio"] + label{
+  color: white;
+  display:inline-block;
+  padding: 7px;
+  border: none;
+  background: transparent;
+  margin-bottom: 10px;
+  font: 16px Arial, Helvetica, sans-serif;
+}
+
+.form-div input[type="text"],
+.form-div textarea,
+.form-div select{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  display: block;
+  width: 100%;
+  padding: 7px;
+  border: none;
+  color: white;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  margin-bottom: 10px;
+  font: 16px Arial, Helvetica, sans-serif;
+  height: 45px;
+}
+
+.maxNumber{
+  width: 47.5% !important;
+  float: right !important;
+  color: white;
+}
+
+.minNumber{
+  width: 47.5% !important;
+  float: left !important;
+  color: white;
+}
+
+.form-div textarea{
+  resize:none;
+  overflow: hidden;
+  color: #FFFFFF;
+}
+.form-div input[type="button"],
+.form-div input[type="submit"]{
+  -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  box-shadow: inset 0px 1px 0px 0px #45D6D6;
+  background-color: #2CBBBB;
+  border: 1px solid #27A0A0;
+  display: inline-block;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 14px;
+  padding: 8px 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.form-div input[type="button"]:hover,
+.form-div input[type="submit"]:hover {
+  background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+  background-color:#34CACA;
+  color: white;
+}
+
+#numberOfEdges, #networkDensity, #averageNodeDegree {
+  color: white;
+}
