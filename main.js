@@ -99,6 +99,8 @@ function start(){
 
     if(playAnimation){
       graph.draw();
+      //var nodesAverageDistance = getUnique(graph.getNodes().length * 0.05, graph.getNodes())
+      //averageDistance(nodesToAverageDistance);
       graph.updateEdges();
       myChart.data.datasets[0].data[0] = graph.getEdges().filter(x => x.getWeigth() < 0.2).length
       myChart.data.datasets[0].data[1] = graph.getEdges().filter(x => x.getWeigth() < 0.4 && x.getWeigth() >= 0.2).length
